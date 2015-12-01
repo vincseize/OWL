@@ -26,6 +26,37 @@
 
 <script type="text/javascript" charset="utf-8">
 
+	// to unify with types
+	function VerifColor_Type(ListColors,id,tb_sql,columnName){
+
+	    var ObjListe = document.getElementById(ListColors); 
+	    var SelIndex = ObjListe.selectedIndex; 
+	    var SelValue = encodeURIComponent(ObjListe.options[ObjListe.selectedIndex].value); 
+	    var SelText = ObjListe.options[ObjListe.selectedIndex].text; 
+
+	    // var id = id;
+	    // var columnName = "color";
+	    var color = SelValue;
+
+	    $.post('c_Update.php?sql_table='+tb_sql+'&columnName='+columnName+'&id='+id+'&value='+color+'');
+	    // $( "#home_container" ).load( "container_types.php" ); // todo better refresh
+	    $( "#home_container" ).load('<?php echo $this_container; ?>'); // todo better refresh
+
+	    /*
+	    if(color!="New_Color"){
+	        $.post('c_Update.php?sql_table='+tb+'&columnName='+columnName+'&id='+id+'&value='+color+'');
+	        $( "#home_container" ).load( "edit_types.php" );
+	    }
+
+	    if(color=="New_Color"){
+	        $( "#dialog_newColor" ).dialog(); 
+	    }
+	    */
+
+	}
+
+
+
 	$(document).ready( function () {
 
 		// var id = -1;	//for simulation 
@@ -273,7 +304,7 @@
 					echo "<td width='10%;'>";
 
 
-						echo "<select id='ListTypes_".$elements_id."' onchange=\"VerifColor_Type('ListTypes_".$elements_id."','".$elements_id."','".$sql_table."');\" style=\"width:100%;height:100%;border:0px;outline:0px\"  >"; 
+						echo "<select id='ListTypes_".$elements_id."' onchange=\"VerifColor_Type('ListTypes_".$elements_id."','".$elements_id."','".$sql_table."','Id_Type');\" style=\"width:100%;height:100%;border:0px;outline:0px\"  >"; 
 							// todo owl_types  from globals, and conform with crud types.php
 			              	$sql2 = $db_handle->runQuery("SELECT * FROM ".$TB_TYPES."");
 			              	if(!empty($sql2)) {
@@ -283,7 +314,7 @@
 									$type_color 	= utf8_decode($sql2[$kk]["color"]);
 									$selected		= "";
 									if($type_id==$elements_id_type){$selected="selected";}
-									echo "<option style=\"background-color:".$type_color.";width:100%;\" value='".$type_color."' $selected>".$type_name."</option>"; 
+									echo "<option style=\"background-color:".$type_color.";width:100%;\" value='".$type_id."' $selected>".$type_name."</option>"; 
 
 								}
 							}

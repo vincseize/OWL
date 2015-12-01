@@ -29,18 +29,19 @@
 
 <script type="text/javascript" charset="utf-8">
 
-	function VerifColor_Type(ListColors,id,tb){
+	// to unify with products
+	function VerifColor_Type(ListColors,id,tb_sql,columnName){
 
 	    var ObjListe = document.getElementById(ListColors); 
 	    var SelIndex = ObjListe.selectedIndex; 
 	    var SelValue = encodeURIComponent(ObjListe.options[ObjListe.selectedIndex].value); 
 	    var SelText = ObjListe.options[ObjListe.selectedIndex].text; 
 
-	    var id = id;
-	    var columnName = "color";
+	    // var id = id;
+	    // var columnName = "color";
 	    var color = SelValue;
 
-	    $.post('c_Update.php?sql_table='+tb+'&columnName='+columnName+'&id='+id+'&value='+color+'');
+	    $.post('c_Update.php?sql_table='+tb_sql+'&columnName='+columnName+'&id='+id+'&value='+color+'');
 	    // $( "#home_container" ).load( "container_types.php" ); // todo better refresh
 	    $( "#home_container" ).load('<?php echo $this_container; ?>'); // todo better refresh
 
@@ -212,7 +213,7 @@
 
 							echo "<td title='Click to edit' width='5%;' class='center' style='background-color:".$elements_color."' style=\"padding:0;margin:0;\"  >";
 
-								echo "<select id='ListColors_".$elements_id."' style='background-color:".$elements_color.";color:".$elements_color.";' onchange=\"VerifColor_Type('ListColors_".$elements_id."','".$elements_id."','".$sql_table."');\" style=\"width:100%;height:100%;border:0px;outline:0px\"  >"; 
+								echo "<select id='ListColors_".$elements_id."' style='background-color:".$elements_color.";color:".$elements_color.";' onchange=\"VerifColor_Type('ListColors_".$elements_id."','".$elements_id."','".$sql_table."','Color');\" style=\"width:100%;height:100%;border:0px;outline:0px\"  >"; 
 									foreach($colors_types as $color_type){
 										$color_type = "#".$color_type;
 										$selected="";
