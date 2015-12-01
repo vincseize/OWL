@@ -98,7 +98,7 @@ div:empty:before {
 						$toggleType_id = "";
 						// $View_Details_Type="No Type Selected";
 
-									// todo owl_types  from globals
+									// todo owl_types  from globals, unify with crud products
 					              	$sql2 = $db_handle->runQuery("SELECT * FROM owl_types WHERE id='".$id_type."'");
 					              	if(!empty($sql2)) {
 										foreach($sql2 as $kk=>$vv) {

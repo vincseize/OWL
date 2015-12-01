@@ -110,12 +110,13 @@
             									},
 
             									// col 10
-            									{
+/*            									{
             										cssclass: "required",
             										indicator: 'Saving ...',
             										//tooltip: 'Double Click to edit'
-            									},
+            									},*/
 
+            									null
 
 									
 
@@ -176,7 +177,6 @@
 
 	    <label for="description">Ville</label><br />
 		<input type="text" name="description" id="description" rel="3" />
-<<<<<<< HEAD
 
 	    <br />
 
@@ -204,35 +204,6 @@
 
 	    <br />
 
-=======
-
-	    <br />
-
-	    <label for="name">Code Postal</label><br />
-		<input type="text" name="name" id="name" rel="4" />
-
-	    <br />
-
-	    <label for="description">Adresse</label><br />
-		<input type="text" name="description" id="description" rel="5" />
-
-	    <br />
-
-	    <label for="name">Pays</label><br />
-		<input type="text" name="name" id="name" rel="6" />
-
-	    <br />
-
-	    <label for="description">Description</label><br />
-		<textarea rows="4" cols="50" name="description" id="description" rel="7" ></textarea>
-
-	    <br />
-	   	<label for="name">Phone</label><br />
-		<input type="text" name="name" id="name" rel="8" />
-
-	    <br />
-
->>>>>>> refs/remotes/origin/Crud-Product
 	    <label for="name">Type</label><br />
 		<input type="text" name="name" id="name" rel="9" />
 
@@ -299,7 +270,28 @@
 					echo "<td width='10%;'>".$elements_pays."</td>";
 					echo "<td>".$elements_comments."</td>";
 					echo "<td width='7%;'>".$elements_phone."</td>";
-					echo "<td width='5%;'>".$elements_id_type."</td>";
+					echo "<td width='10%;'>";
+
+
+						echo "<select id='ListTypes_".$elements_id."' onchange=\"VerifColor_Type('ListTypes_".$elements_id."','".$elements_id."','".$sql_table."');\" style=\"width:100%;height:100%;border:0px;outline:0px\"  >"; 
+							// todo owl_types  from globals, and conform with crud types.php
+			              	$sql2 = $db_handle->runQuery("SELECT * FROM ".$TB_TYPES."");
+			              	if(!empty($sql2)) {
+								foreach($sql2 as $kk=>$vv) {
+									$type_id 		= utf8_decode($sql2[$kk]["id"]);
+									$type_name 		= utf8_decode($sql2[$kk]["name"]);
+									$type_color 	= utf8_decode($sql2[$kk]["color"]);
+									$selected		= "";
+									if($type_id==$elements_id_type){$selected="selected";}
+									echo "<option style=\"background-color:".$type_color.";width:100%;\" value='".$type_color."' $selected>".$type_name."</option>"; 
+
+								}
+							}
+
+						echo "</select>"; 
+
+
+					echo "</td>";
 						
 
 					echo "</td>";
