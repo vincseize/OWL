@@ -454,6 +454,7 @@
 									$type_color 	= utf8_decode($sql2[$kk]["color"]);
 									$selected		= "";
 									if($type_id==$elements_id_type){$selected="selected";}
+									if($elements_id_type=="0"){$type_name="No Type Selected";} // debug todo better
 									echo "<option style=\"background-color:".$type_color.";width:100%;\" value='".$type_id."' $selected>".$type_name."</option>"; 
 
 								}
