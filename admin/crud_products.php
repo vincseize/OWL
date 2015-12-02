@@ -322,15 +322,15 @@
 	<!--  todo, better submit refresh  -->
 	<form id="formAddNewRow" action="#" title="Add" style="background: #c9b7a2;">
 	    
-		<input placeholder="Nom" class="form-field" type="text" name="nom" id="nom" rel="0" />
+		<input placeholder="Nom" class="form-field" type="text" name="nom" id="nom" rel="0" required/>*
 
 	    <br />
 
-		<input placeholder="Localisation x" class="form-field" type="localisation_x" name="localisation_x" id="description" rel="1" />
+		<input placeholder="Localisation x" class="form-field" type="localisation_x" name="localisation_x" id="description" rel="1" />*
 
 	    <br />
 
-		<input placeholder="Localisation y" class="form-field" type="text" name="localisation_y" id="localisation_y" rel="2" />
+		<input placeholder="Localisation y" class="form-field" type="text" name="localisation_y" id="localisation_y" rel="2" />*
 
 	    <br />
 
@@ -358,7 +358,7 @@
 
 	    <br />
 
-		<input placeholder="Type"  class="form-field" type="text" name="type" id="type" rel="9" />
+		<input placeholder="Type"  class="form-field" type="text" name="type" id="type" rel="9" required/>*
 
 	</form>
 
