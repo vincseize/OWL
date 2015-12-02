@@ -57,7 +57,43 @@
 
 
 
+	function Select_Type(){
+	    var ObjListe = document.getElementById("ListTypes"); 
+	    var SelIndex = ObjListe.selectedIndex; 
+	    var SelValue = encodeURIComponent(ObjListe.options[ObjListe.selectedIndex].value); 
+	    var SelText = ObjListe.options[ObjListe.selectedIndex].text; 
+
+	    // var id = id;
+	    // var columnName = "color";
+	    var id_type = SelValue;
+	    // alert(id_type);
+	    var type = document.getElementById("type");
+	    type.value = id_type;
+	}
+
+
 	$(document).ready( function () {
+
+
+		// default add value
+/*	    var ObjListe = document.getElementById("ListTypes"); 
+	    var SelIndex = ObjListe.selectedIndex; 
+	    var SelValue = encodeURIComponent(ObjListe.options[ObjListe.selectedIndex].value); 
+	    var SelText = ObjListe.options[ObjListe.selectedIndex].text; 
+
+	    // var id = id;
+	    // var columnName = "color";
+	    var id_type = SelValue;
+
+	    var type = document.getElementById("type");
+	    type.value = id_type;*/
+
+
+		Select_Type();
+
+
+
+
 
 		// var id = -1;	//for simulation 
 		var tb = "<?php echo $sql_table; ?>";
@@ -376,7 +412,30 @@
 
 	    <br />
 
-		<input placeholder="Type"  class="form-field" type="text" name="type" id="type" rel="9" required/>*
+		<input placeholder="Type"  class="form-field" type="text" name="type" id="type" rel="9" required/>
+		<label for="ListTypes">Type*</label>
+
+<?php
+						echo "<select id='ListTypes' name='ListTypes' onchange=\"Select_Type();\" style=\"width:100%;height:100%;border:0px;outline:0px\">*"; 
+							// todo owl_types  from globals, and conform with crud types.php
+			              	$sql2 = $db_handle->runQuery("SELECT * FROM ".$TB_TYPES."");
+			              	if(!empty($sql2)) {
+								foreach($sql2 as $kk=>$vv) {
+									$type_id 		= utf8_decode($sql2[$kk]["id"]);
+									$type_name 		= utf8_decode($sql2[$kk]["name"]);
+									$type_color 	= utf8_decode($sql2[$kk]["color"]);
+									$selected		= "";
+									if($type_id==$elements_id_type){$selected="selected";}
+									if($elements_id_type=="0"){$type_name="No Type Selected";} // debug todo better
+									echo "<option style=\"background-color:".$type_color.";width:100%;\" value='".$type_id."' $selected>".$type_name."</option>"; 
+
+								}
+							}
+
+						echo "</select>"; 
+?>
+
+
 
 	</form>
 
