@@ -155,6 +155,24 @@
 
 
 
+/*"fieldErrors": [
+        {
+            "name":   "nom",
+            "status": "This field is required"
+        },
+        {
+            "name":   "type",
+            "status": "This field is required"
+        }
+    ],*/
+
+
+
+
+
+
+
+
 							oAddNewRowButtonOptions: {	label: "Add...",
 											icons: {primary:'ui-icon-plus'} 
 							},
@@ -326,11 +344,11 @@
 
 	    <br />
 
-		<input placeholder="Localisation x" class="form-field" type="localisation_x" name="localisation_x" id="description" rel="1" />*
+		<input placeholder="Localisation x" class="form-field" type="localisation_x" name="localisation_x" id="description" rel="1" required/>*
 
 	    <br />
 
-		<input placeholder="Localisation y" class="form-field" type="text" name="localisation_y" id="localisation_y" rel="2" />*
+		<input placeholder="Localisation y" class="form-field" type="text" name="localisation_y" id="localisation_y" rel="2" required/>*
 
 	    <br />
 

@@ -56,10 +56,10 @@
 
 	if(	$sql_table==$TB_PRODUCTS){
 
-		$nom = $_REQUEST['nom'] ;
+		$nom = mysql_real_escape_string(htmlentities($_REQUEST['nom'], ENT_QUOTES, "UTF-8"));
 		$localisation_x = $_REQUEST['localisation_x'] ;
 		$localisation_y = $_REQUEST['localisation_y'] ;
-		$comments = $_REQUEST['comments'] ;
+		$comments = mysql_real_escape_string(htmlentities($_REQUEST['comments'], ENT_QUOTES, "UTF-8"));
 
 /*		
 
@@ -73,8 +73,8 @@
 			fwrite($fp, $comments);
 			fclose($fp);*/
 
-		if(isset($nom)){ $nom = mysql_real_escape_string(htmlentities($nom, ENT_QUOTES, "UTF-8")); };
-		if(isset($comments)){ $comments = mysql_real_escape_string(htmlentities($comments, ENT_QUOTES, "UTF-8")); };
+		// if(isset($nom)){ $nom = mysql_real_escape_string(htmlentities($nom, ENT_QUOTES, "UTF-8")); };
+		// if(isset($comments)){ $comments = mysql_real_escape_string(htmlentities($comments, ENT_QUOTES, "UTF-8")); };
 
 		$result = mysql_query("INSERT INTO ".$sql_table." (nom, localisation_x, localisation_y, comments) VALUES ('".$nom."','".$localisation_x."','".$localisation_y."','".$comments."')" );
 
