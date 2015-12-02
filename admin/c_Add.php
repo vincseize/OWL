@@ -56,14 +56,18 @@
 
 	if(	$sql_table==$TB_PRODUCTS){
 
-		$nom = mysql_real_escape_string(htmlentities($_REQUEST['nom'], ENT_QUOTES, "UTF-8"));
-		$localisation_x = $_REQUEST['localisation_x'] ;
-		$localisation_y = $_REQUEST['localisation_y'] ;
-		$comments = mysql_real_escape_string(htmlentities($_REQUEST['comments'], ENT_QUOTES, "UTF-8"));
+		$nom 				= mysql_real_escape_string(htmlentities($_REQUEST['nom'], ENT_QUOTES, "UTF-8"));
+		$localisation_x 	= $_REQUEST['localisation_x'] ;
+		$localisation_y 	= $_REQUEST['localisation_y'] ;
+		$ville 				= mysql_real_escape_string(htmlentities($_REQUEST['ville'], ENT_QUOTES, "UTF-8"));
+		$code_postal 		= mysql_real_escape_string(htmlentities($_REQUEST['code_postal'], ENT_QUOTES, "UTF-8"));
+		$adresse 			= mysql_real_escape_string(htmlentities($_REQUEST['adresse'], ENT_QUOTES, "UTF-8"));
+		$pays 				= mysql_real_escape_string(htmlentities($_REQUEST['pays'], ENT_QUOTES, "UTF-8"));
+		$comments 			= mysql_real_escape_string(htmlentities($_REQUEST['comments'], ENT_QUOTES, "UTF-8"));
+		$phone 				= mysql_real_escape_string(htmlentities($_REQUEST['phone'], ENT_QUOTES, "UTF-8"));
+		$id_type 			= $_REQUEST['type'];		
 
-/*		
-
-			$fp = fopen('add.txt', 'w');
+/*			$fp = fopen('add.txt', 'w');
 			fwrite($fp, $nom);
 			fwrite($fp, "\n");
 			fwrite($fp, $localisation_x);
@@ -71,12 +75,17 @@
 			fwrite($fp, $localisation_y);
 			fwrite($fp, "\n");
 			fwrite($fp, $comments);
+			fwrite($fp, "\n");
+			fwrite($fp, $phone);
+			fwrite($fp, "\n");
+			fwrite($fp, $id_type);
+
 			fclose($fp);*/
 
 		// if(isset($nom)){ $nom = mysql_real_escape_string(htmlentities($nom, ENT_QUOTES, "UTF-8")); };
 		// if(isset($comments)){ $comments = mysql_real_escape_string(htmlentities($comments, ENT_QUOTES, "UTF-8")); };
 
-		$result = mysql_query("INSERT INTO ".$sql_table." (nom, localisation_x, localisation_y, comments) VALUES ('".$nom."','".$localisation_x."','".$localisation_y."','".$comments."')" );
+		$result = mysql_query("INSERT INTO ".$sql_table." (nom, localisation_x, localisation_y, ville, code_postal, adresse, pays, comments, phone, id_type) VALUES ('".$nom."','".$localisation_x."','".$localisation_y."','".$ville."','".$code_postal."','".$adresse."','".$pays."','".$comments."','".$phone."','".$id_type."')" );
 
 		echo $_REQUEST['nom']; // Important, for not alert !  or id ????
 

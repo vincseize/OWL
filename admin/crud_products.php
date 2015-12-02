@@ -63,10 +63,8 @@
 	    var SelValue = encodeURIComponent(ObjListe.options[ObjListe.selectedIndex].value); 
 	    var SelText = ObjListe.options[ObjListe.selectedIndex].text; 
 
-	    // var id = id;
-	    // var columnName = "color";
 	    var id_type = SelValue;
-	    // alert(id_type);
+
 	    var type = document.getElementById("type");
 	    type.value = id_type;
 	}
@@ -74,26 +72,8 @@
 
 	$(document).ready( function () {
 
-
-		// default add value
-/*	    var ObjListe = document.getElementById("ListTypes"); 
-	    var SelIndex = ObjListe.selectedIndex; 
-	    var SelValue = encodeURIComponent(ObjListe.options[ObjListe.selectedIndex].value); 
-	    var SelText = ObjListe.options[ObjListe.selectedIndex].text; 
-
-	    // var id = id;
-	    // var columnName = "color";
-	    var id_type = SelValue;
-
-	    var type = document.getElementById("type");
-	    type.value = id_type;*/
-
-
+		// default form add type select value
 		Select_Type();
-
-
-
-
 
 		// var id = -1;	//for simulation 
 		var tb = "<?php echo $sql_table; ?>";
@@ -412,7 +392,7 @@
 
 	    <br />
 
-		<input placeholder="Type"  class="form-field" type="text" name="type" id="type" rel="9" required/>
+		<input placeholder="Type"  class="form-field" type="text" name="type" id="type" rel="9" style="visibilityx:hidden"/>
 		<label for="ListTypes">Type*</label>
 
 <?php
