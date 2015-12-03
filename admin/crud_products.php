@@ -92,78 +92,77 @@
 							sDeleteURL: "c_Delete.php?sql_table="+tb,
             							"aoColumns": [
 
-            									// col 1 
+            									// col 1 nom
             									{ 	
             										cssclass: "required",
             										indicator: 'Saving ...',
             										//tooltip: 'Double Click to edit'
+            										callback : function(value, settings) { // to refresh, or what yoy want
+												        // console.log(this);
+												        // console.log(value);
+												        // console.log(settings);
+												    }
             									},
 
-            									// col 2
+            									// col 2 loc x
             									{ 	
             										cssclass: "required",
             										indicator: 'Saving ...',
-            										//tooltip: 'Double Click to edit'
+            										callback : function(value, settings) {}            										
             									},
 
-            									// col 3
+            									// col 3 loc y
             									{ 	
             										cssclass: "required",
             										indicator: 'Saving ...',
-            										//tooltip: 'Double Click to edit'
+            										callback : function(value, settings) {}            										
             									},
 
-            									// col 4
+            									// col 4 ville
             									{ 	
             										cssclass: "required",
             										indicator: 'Saving ...',
-            										//tooltip: 'Double Click to edit'
+            										callback : function(value, settings) {}            										
             									},
 
-            									// col 5
+            									// col 5 code postal
             									{ 	
             										cssclass: "required",
             										indicator: 'Saving ...',
-            										//tooltip: 'Double Click to edit'
+            										callback : function(value, settings) {}            										
             									},
 
-            									// col 6
+            									// col 6 adresse
             									{ 	
             										cssclass: "required",
             										indicator: 'Saving ...',
-            										//tooltip: 'Double Click to edit'
+            										callback : function(value, settings) {}            										
             									},
 
-            									// col 7
+            									// col 7 pays
             									{ 	
             										cssclass: "required",
             										indicator: 'Saving ...',
-            										//tooltip: 'Double Click to edit'
+            										callback : function(value, settings) {}
             									},
 
-            									// col 8
+            									// col 8 comments
             									{ 	
         									        indicator: 'Saving ...',
-                                                    //tooltip: 'Double Click to edit',
 													type: 'textarea',
-                                         			submit:'Save'
+                                         			submit:'Save',
+            										callback : function(value, settings) {}                                         			
             									},
 
-            									// col 9
+            									// col 9 phone
             									{ 	
             										cssclass: "required",
             										indicator: 'Saving ...',
-            										//tooltip: 'Double Click to edit'
+            										callback : function(value, settings) {}
             									},
 
-            									// col 10
-/*            									{
-            										cssclass: "required",
-            										indicator: 'Saving ...',
-            										//tooltip: 'Double Click to edit'
-            									},*/
-
-            									null
+            									// col 10 Type type, null for own html content, here type: select
+            									null,
 
 									
 

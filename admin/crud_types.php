@@ -87,22 +87,27 @@
 							sDeleteURL: "c_Delete.php?sql_table="+tb,
             							"aoColumns": [
 
-            									// col 1 
+            									// col 1 Name
             									{ 	
             										cssclass: "required",
             										indicator: 'Saving ...',
             										//tooltip: 'Double Click to edit'
+            										callback : function(value, settings) { // to refresh, or what yoy want
+												        // console.log(this);
+												        // console.log(value);
+												        // console.log(settings);
+												    }
             									},
 
 
-            									// col 2 
+            									// col 2 Description
             									{
         									        indicator: 'Saving ...',
-                                                    //tooltip: 'Double Click to edit',
 													type: 'textarea',
-                                         			submit:'Save'
+                                         			submit:'Save',
+            										callback : function(value, settings) {}
             									},
-
+            									// col 3 Color type, null for own html content, here type: select
                                                 null		
 
 									],
