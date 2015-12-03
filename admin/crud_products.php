@@ -110,7 +110,14 @@
 
 
 
-var oTable = $('#example').dataTable();
+var oTable = $('#example').dataTable( {
+	retrieve: true,
+    paging: false,
+    searching: false
+} );
+oTable.fnDestroy();
+
+
     var nEditing = null;
 $('#addRow').click( function (e) {
     e.preventDefault();

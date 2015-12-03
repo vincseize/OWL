@@ -67,7 +67,7 @@
 		$phone 				= mysql_real_escape_string(htmlentities($_REQUEST['phone'], ENT_QUOTES, "UTF-8"));
 		$id_type 			= $_REQUEST['type'];		
 
-			$fp = fopen('add.txt', 'w');
+/*			$fp = fopen('add.txt', 'w');
 			fwrite($fp, $nom);
 			fwrite($fp, "\n");
 			fwrite($fp, $localisation_x);
@@ -80,7 +80,7 @@
 			fwrite($fp, "\n");
 			fwrite($fp, $id_type);
 
-			fclose($fp);
+			fclose($fp);*/
 
 		// if(isset($nom)){ $nom = mysql_real_escape_string(htmlentities($nom, ENT_QUOTES, "UTF-8")); };
 		// if(isset($comments)){ $comments = mysql_real_escape_string(htmlentities($comments, ENT_QUOTES, "UTF-8")); };
