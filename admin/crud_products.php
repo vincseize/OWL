@@ -7,6 +7,7 @@
     $products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
     $this_filename = explode(".",__FILE__)[0];
     $this_container = "container_".explode("_",$this_filename)[1].".php";
+    $ch = explode("_",$this_filename)[1];
 
 	include('__css_js_crud.php'); // don't touch emplacement
 
@@ -77,16 +78,79 @@
 
 		// var id = -1;	//for simulation 
 		var tb = "<?php echo $sql_table; ?>";
+		var ch = "<?php echo $ch; ?>";
+
+		// add new row
+/*		var t = $('#example').DataTable();
+		var counter = 1;
+							$('#addRow').on( 'click', function () {
+
+
+
+
+							        t.row.add( [
+							            counter +'Click Here to  ',
+							            counter +'.2',
+							            counter +'.3',
+							            counter +'.4',
+							            counter +'.5',
+							            counter +'.6',
+							            counter +'.7',
+							            counter +'.8',							            
+							            counter +'.9',
+							            counter +'.10'
+							        ] ).draw( false );
+							 
+							        counter++;
+							    } );
+
+						    // Automatically add a first row of data
+						    // $('#addRow').click();*/
+
+
+
+
+var oTable = $('#example').dataTable();
+    var nEditing = null;
+$('#addRow').click( function (e) {
+    e.preventDefault();
+ 
+    var aiNew = oTable.fnAddData( [ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click here to modify', '', '', '', '','', '', '','','' ] ); // &nbsp; for first row
+    var nRow = oTable.fnGetNodes( aiNew[0] );
+    // editRow( oTable, nRow );
+    nEditing = nRow;
+    
+    $.post( "c_Add.php?sql_table="+tb );
+} );
+
+
+
+
+
+
+
+
 
 		$('#example').dataTable({ bJQueryUI: true,"sPaginationType": "full_numbers"}).makeEditable({
-		// $('#example').dataTable().makeEditable({
+		// $('#example').dataTable().makeEditable({ :: simply
 							/*sUpdateURL: function(value, settings)
 							{
                      							return(value); //Simulation of server-side response using a callback function
 							},*/
 
+
+							// 
+
+
+
+
 							sUpdateURL: "c_Update.php?sql_table="+tb,						
                      		sAddURL: "c_Add.php?sql_table="+tb, // todo rowdata not defined bug non bloquant
+										success: function(data) {
+										                console.log("add done")
+										            },
+
+
                      		sAddHttpMethod: "GET",
                             sDeleteHttpMethod: "GET",
 							sDeleteURL: "c_Delete.php?sql_table="+tb,
@@ -202,10 +266,14 @@
 											hide: "blind",
 											// hide: "explode",
                                             modal: true
+                                            // oTable.fnDraw()
 							}	,
 							
 
-							sAddDeleteToolbarSelector: ".dataTables_length"								
+							sAddDeleteToolbarSelector: ".dataTables_length"		
+
+
+												
 
 		});
 		
@@ -348,12 +416,15 @@
  -->
 
 
+	<button id="addRow" name="addRow">add row</button>
 
 
+
+	<!-- ADD with form modal -->
 	<!-- to do hide on load -->
 
 	<!--  todo, better submit refresh  -->
-	<form id="formAddNewRow" action="#" title="Add" style="background: #c9b7a2;">
+	<form id="formAddNewRow" action="#" title="Add" style="background: #c9b7a2;display:none;">
 	    
 		<input placeholder="Nom" class="form-field" type="text" name="nom" id="nom" rel="0" required/>*
 
@@ -394,30 +465,31 @@
 		<input placeholder="Type"  class="form-field" type="text" name="type" id="type" rel="9" style="visibilityx:hidden"/>
 		<label for="ListTypes">Type*</label>
 
-<?php
-						echo "<select id='ListTypes' name='ListTypes' onchange=\"Select_Type();\" style=\"width:100%;height:100%;border:0px;outline:0px\">*"; 
-							// todo owl_types  from globals, and conform with crud types.php
-			              	$sql2 = $db_handle->runQuery("SELECT * FROM ".$TB_TYPES."");
-			              	if(!empty($sql2)) {
-								foreach($sql2 as $kk=>$vv) {
-									$type_id 		= utf8_decode($sql2[$kk]["id"]);
-									$type_name 		= utf8_decode($sql2[$kk]["name"]);
-									$type_color 	= utf8_decode($sql2[$kk]["color"]);
-									$selected		= "";
-									if($type_id==$elements_id_type){$selected="selected";}
-									if($elements_id_type=="0"){$type_name="No Type Selected";} // debug todo better
-									echo "<option style=\"background-color:".$type_color.";width:100%;\" value='".$type_id."' $selected>".$type_name."</option>"; 
+				<?php
+										// to do, background color, from unique select from commun to list and option
+										echo "<select id='ListTypes' name='ListTypes' onchange=\"Select_Type();\" style=\"width:100%;height:100%;border:0px;outline:0px\">*"; 
+											// todo owl_types  from globals, and conform with crud types.php
+							              	$sql2 = $db_handle->runQuery("SELECT * FROM ".$TB_TYPES."");
+							              	if(!empty($sql2)) {
+												foreach($sql2 as $kk=>$vv) {
+													$type_id 		= utf8_decode($sql2[$kk]["id"]);
+													$type_name 		= utf8_decode($sql2[$kk]["name"]);
+													$type_color 	= utf8_decode($sql2[$kk]["color"]);
+													$selected		= "";
+													if($type_id==$elements_id_type){$selected="selected";}
+													if($elements_id_type=="0"){$type_name="No Type Selected";} // debug todo better
+													echo "<option style=\"background-color:".$type_color.";width:100%;\" value='".$type_id."' $selected>".$type_name."</option>"; 
 
-								}
-							}
+												}
+											}
 
-						echo "</select>"; 
-?>
+										echo "</select>"; 
+				?>
 
 
 
 	</form>
-
+	<!-- ADD with form modal -->
 
 
 
