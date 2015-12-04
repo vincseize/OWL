@@ -41,7 +41,7 @@
 
 	    $.post('c_Update.php?sql_table='+tb_sql+'&columnName='+columnName+'&id='+id+'&value='+color+'');
 	    // $( "#home_container" ).load( "container_types.php" ); // todo better refresh
-	    $( "#home_container" ).load('<?php echo $this_container; ?>'); // todo better refresh
+	    $(this).parent().load("<?php echo $this_container; ?>"); // todo better refresh
 
 	    /*
 	    if(color!="New_Color"){
@@ -68,6 +68,11 @@
 
 	    var type = document.getElementById("type");
 	    type.value = id_type;
+
+
+		// $(this).parent().load("<?php echo $this_container; ?>"); // todo better refresh
+		// onChange css color select to change
+
 	}
 
 
@@ -114,9 +119,11 @@ var oTable = $('#example').dataTable( {
 	retrieve: true,
     paging: false,
     searching: false
-} );
-oTable.fnDestroy();
 
+} );
+
+oTable.fnDestroy();
+			// oTable.fnDraw(false);
 
     var nEditing = null;
 $('#addRow').click( function (e) {
@@ -127,7 +134,13 @@ $('#addRow').click( function (e) {
     // editRow( oTable, nRow );
     nEditing = nRow;
     
-    $.post( "c_Add.php?sql_table="+tb );
+    $.post( "c_Add.php?sql_table="+tb ); // todo refresh
+
+	// oTable.fnDestroy();
+	// oTable.fnDraw();
+
+	$(this).parent().load("<?php echo $this_container; ?>");
+
 } );
 
 
@@ -138,7 +151,11 @@ $('#addRow').click( function (e) {
 
 
 
-		$('#example').dataTable({ bJQueryUI: true,"sPaginationType": "full_numbers"}).makeEditable({
+		$('#example').dataTable({ bJQueryUI: true,"sPaginationType": "full_numbers",}).makeEditable({
+		// $('#example').dataTable({ bJQueryUI: true,"sPaginationType": "full_numbers","sDom": '<"H"<"toolbar">fr>t<"F"ip>',}).makeEditable({
+
+
+
 		// $('#example').dataTable().makeEditable({ :: simply
 							/*sUpdateURL: function(value, settings)
 							{
@@ -151,16 +168,29 @@ $('#addRow').click( function (e) {
 
 
 
+
+
+
+
+
+
+
+
+							// sDom: '<"toolbar">frtip',
+
+
 							sUpdateURL: "c_Update.php?sql_table="+tb,						
                      		sAddURL: "c_Add.php?sql_table="+tb, // todo rowdata not defined bug non bloquant
-										success: function(data) {
+/*										success: function(data) {
 										                console.log("add done")
-										            },
+										            },*/
 
 
                      		sAddHttpMethod: "GET",
                             sDeleteHttpMethod: "GET",
 							sDeleteURL: "c_Delete.php?sql_table="+tb,
+										
+									
             							"aoColumns": [
 
             									// col 1 nom
@@ -171,7 +201,7 @@ $('#addRow').click( function (e) {
             										callback : function(value, settings) { // to refresh, or what yoy want
 												        // console.log(this);
 												        // console.log(value);
-												        // console.log(settings);
+												        // console.log(settings);												       
 												    }
             									},
 
@@ -259,11 +289,14 @@ $('#addRow').click( function (e) {
 
 
 
-							oAddNewRowButtonOptions: {	label: "Add...",
+							oAddNewRowButtonOptions: {	
+											label: "Add...",
 											icons: {primary:'ui-icon-plus'} 
+
 							},
 
-							oDeleteRowButtonOptions: {	label: "Remove", 
+							oDeleteRowButtonOptions: {	
+											label: "Remove", 
 											icons: {primary:'ui-icon-trash'}
 							},
 
@@ -277,14 +310,53 @@ $('#addRow').click( function (e) {
 							}	,
 							
 
-							sAddDeleteToolbarSelector: ".dataTables_length"		
+							sAddDeleteToolbarSelector: ".dataTables_length"	,	
 
 
-												
+
 
 		});
-		
+	
+
+
+
+
+
+										// $("#example").fnDestroy().dataTable();
+										// $("#example").fnDestroy().dataTable();
+
+
+										// console.log("tesst return");
+
+
+
+	
+
+
+
+
+
+
+
+
 } );
+
+
+
+
+
+
+
+
+
+$('div.toolbar').html('<b>Custom tool bar! Text/images etc.</b>');
+
+
+
+
+
+
+
 
 
 </script>
@@ -423,7 +495,7 @@ $('#addRow').click( function (e) {
  -->
 
 
-	<button id="addRow" name="addRow">add row</button>
+	<button id="addRow" name="addRow">+ Add <?php echo $nom_product;?> ...</button>
 
 
 
