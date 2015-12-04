@@ -115,37 +115,67 @@
 
 
 
-var oTable = $('#example').dataTable( {
-	retrieve: true,
-    paging: false,
-    searching: false
+	var oTable = $('#example').dataTable( {
+		retrieve: true,
+	    paging: false,
+	    searching: false
 
-} );
+	} );
 
-oTable.fnDestroy();
-			// oTable.fnDraw(false);
+	oTable.fnDestroy();
+				// oTable.fnDraw(false);
 
     var nEditing = null;
-$('#addRow').click( function (e) {
-    e.preventDefault();
- 
-    var aiNew = oTable.fnAddData( [ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click here to modify', '', '', '', '','', '', '','','' ] ); // &nbsp; for first row
-    var nRow = oTable.fnGetNodes( aiNew[0] );
-    // editRow( oTable, nRow );
-    nEditing = nRow;
-    
-    $.post( "c_Add.php?sql_table="+tb ); // todo refresh
+	$('#addRow').click( function (e) {
+	    e.preventDefault();
+	 
+	    var aiNew = oTable.fnAddData( [ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click here to modify', '', '', '', '','', '', '','','' ] ); // &nbsp; for first row
+	    var nRow = oTable.fnGetNodes( aiNew[0] );
+	    // editRow( oTable, nRow );
+	    nEditing = nRow;
+	    
+	    $.post( "c_Add.php?sql_table="+tb ); // todo refresh
 
-	// oTable.fnDestroy();
-	// oTable.fnDraw();
+		// oTable.fnDestroy();
+		// oTable.fnDraw();
 
-	$(this).parent().load("<?php echo $this_container; ?>");
+		$(this).parent().load("<?php echo $this_container; ?>");
 
-} );
-
-
+	} );
 
 
+
+
+$('#example tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+            // $('#deleteRow').attr('disabled','disabled');
+            // document.getElementById("#addRow").disabled = true;
+            $('#deleteRow').hide();
+        }
+        else {
+            oTable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+            	// $('#deleteRow').removeAttr('disabled');
+            	// document.getElementById("#addRow").disabled = false;
+            	$('#deleteRow').show();
+        }
+    } );
+
+
+
+
+
+
+
+
+
+	// var oTable = $('#example').dataTable();
+/*	$('#deleteRow').click( function (e) {
+	    e.preventDefault();
+		var aiNew = oTable.row('.selected').remove().draw( false );
+
+	} );*/
 
 
 
@@ -495,8 +525,8 @@ $('div.toolbar').html('<b>Custom tool bar! Text/images etc.</b>');
  -->
 
 
-	<button id="addRow" name="addRow">+ Add <?php echo $nom_product;?> ...</button>
-
+	<button id="addRow" id="addRow" name="addRow">+ Add <?php echo $nom_product;?> ...</button>
+	<button id="deleteRow" id="deleteRow" name="deleteRow" style="display:none">Delete <?php echo $nom_product;?> ...</button>
 
 
 	<!-- ADD with form modal -->
