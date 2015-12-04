@@ -23,7 +23,7 @@
 <script language="javascript" type="text/javascript" src="../js/jquery.colorPicker.js"/></script>-->
 <script language="javascript" type="text/javascript" src="../js/owl.js"/></script>
 <link rel="stylesheet" href="../css/colorPicker.css" type="text/css" />
-
+<link rel="stylesheet" href="../css/owl.css" type="text/css" />
 
 <script type="text/javascript" charset="utf-8">
 
@@ -79,37 +79,20 @@
 
 
 	function deleteR(id,tb){
-
-
-		
-	    
-	   //$(id).parent().remove();
-
-		var tr = $('#' + id);
-	    
+		var tr = $('#' + id);  
 		tr.css("background-color","#FF3700");
 
-
 		if (confirm("Are you sure you want to delete this?")) {
-		        console.log(id);
-		    } else {
-		        false;
-		    }   
+			$.post( "c_Delete.php?sql_table="+tb+"&id="+id );
+			tr.remove();
+		    // console.log(id);
+		} else {
+		    // tr.removeAttr( 'background-color' );
+		    tr.css("background-color","");		    	
+		    false;
+		}   
 
-
-
-
-
-
-
-		// tr.remove();
-
-
-/*		var tr = $(this).closest('tr');
-		tr.css("background-color","#FF3700")*/
-
-/*	    $.post( "c_Delete.php?sql_table="+tb+"&id="+id ); // todo refresh
-		$(this).parent().load("<?php echo $this_container; ?>");*/
+		// $(this).parent().load("<?php echo $this_container; ?>");*/
 
 	} 
 
@@ -122,6 +105,26 @@
 
 
 	$(document).ready( function () {
+
+
+
+	$body = $("body");
+
+	// loader
+    $body.addClass("loading");
+	// end loader
+    // $body.removeClass("loading");
+
+
+
+
+
+
+
+
+
+
+
 
 		// default form add type select value
 		Select_Type();
@@ -150,7 +153,9 @@
 
 	$('#addRow').click( function (e) {
 	    e.preventDefault();
-	 
+
+		$body.addClass("loading");
+
 	    var aiNew = oTable.fnAddData( [ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click here to modify', '', '', '', '','', '', '','','','' ] ); // &nbsp; for first row
 	    var nRow = oTable.fnGetNodes( aiNew[0] );
 	    // editRow( oTable, nRow );
@@ -170,7 +175,7 @@
 	    e.preventDefault();
 		// var aiNew = oTable.row('.selected').remove().draw( false );
 		// var oTT = TableTools.fnGetInstance( 'example' );
-    var aSelectedTrs = fnGetSelected( oTable );
+    	var aSelectedTrs = fnGetSelected( oTable );
 		alert( aSelectedTrs );
 
 	} );
@@ -421,8 +426,8 @@
 
 
 
-
-
+	// end loading
+    $body.removeClass("loading");
 
 
 
@@ -437,7 +442,7 @@
 
 
 
-$('div.toolbar').html('<b>Custom tool bar! Text/images etc.</b>');
+// $('div.toolbar').html('<b>Custom tool bar! Text/images etc.</b>');
 
 
 
@@ -454,7 +459,16 @@ $('div.toolbar').html('<b>Custom tool bar! Text/images etc.</b>');
 
 <body id="index" class="grid_2_3">
 		
+
+<div class="modalLoading"><!-- Place at bottom of page --></div>
+
+
+
 <style>
+
+
+
+
 .form-container {
    border: 1px solid #f2e3d2;
    background: #c9b7a2;
@@ -584,7 +598,7 @@ $('div.toolbar').html('<b>Custom tool bar! Text/images etc.</b>');
 
 
 	<button id="addRow" id="addRow" name="addRow">+ Add <?php echo $nom_product;?> ...</button>
-	<button id="deleteRowX" id="deleteRowX" name="deleteRowX" style="display:none">Delete <?php echo $nom_product;?> ...</button>
+
 
 
 	<!-- ADD with form modal -->
@@ -720,7 +734,7 @@ $('div.toolbar').html('<b>Custom tool bar! Text/images etc.</b>');
 					echo "<td width='10%;'>".$elements_pays."</td>";
 					echo "<td>".$elements_comments."</td>";
 					echo "<td width='7%;'>".$elements_phone."</td>";
-					echo "<td width='10%;'>";
+					echo "<td width='11%;'>";
 
 
 						echo "<select id='ListTypes_".$elements_id."' onchange=\"VerifColor_Type('ListTypes_".$elements_id."','".$elements_id."','".$sql_table."','Id_Type');\" style=\"width:100%;height:100%;border:0px;outline:0px\"  >"; 
