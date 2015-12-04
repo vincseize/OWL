@@ -14,7 +14,7 @@
     // CONFIG
     $elements = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
     $sql_table = $TB_PRODUCTS;
-    $arrayNameCols = array('nom','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','type');  
+    $arrayNameCols = array('nom','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','type','');  
 
 ?>
 
@@ -76,6 +76,51 @@
 	}
 
 
+
+
+	function deleteR(id,tb){
+
+
+		
+	    
+	   //$(id).parent().remove();
+
+		var tr = $('#' + id);
+	    
+		tr.css("background-color","#FF3700");
+
+
+		if (confirm("Are you sure you want to delete this?")) {
+		        console.log(id);
+		    } else {
+		        false;
+		    }   
+
+
+
+
+
+
+
+		// tr.remove();
+
+
+/*		var tr = $(this).closest('tr');
+		tr.css("background-color","#FF3700")*/
+
+/*	    $.post( "c_Delete.php?sql_table="+tb+"&id="+id ); // todo refresh
+		$(this).parent().load("<?php echo $this_container; ?>");*/
+
+	} 
+
+
+
+
+
+
+
+
+
 	$(document).ready( function () {
 
 		// default form add type select value
@@ -84,34 +129,6 @@
 		// var id = -1;	//for simulation 
 		var tb = "<?php echo $sql_table; ?>";
 		var ch = "<?php echo $ch; ?>";
-
-		// add new row
-/*		var t = $('#example').DataTable();
-		var counter = 1;
-							$('#addRow').on( 'click', function () {
-
-
-
-
-							        t.row.add( [
-							            counter +'Click Here to  ',
-							            counter +'.2',
-							            counter +'.3',
-							            counter +'.4',
-							            counter +'.5',
-							            counter +'.6',
-							            counter +'.7',
-							            counter +'.8',							            
-							            counter +'.9',
-							            counter +'.10'
-							        ] ).draw( false );
-							 
-							        counter++;
-							    } );
-
-						    // Automatically add a first row of data
-						    // $('#addRow').click();*/
-
 
 
 
@@ -126,10 +143,15 @@
 				// oTable.fnDraw(false);
 
     var nEditing = null;
+
+
+
+
+
 	$('#addRow').click( function (e) {
 	    e.preventDefault();
 	 
-	    var aiNew = oTable.fnAddData( [ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click here to modify', '', '', '', '','', '', '','','' ] ); // &nbsp; for first row
+	    var aiNew = oTable.fnAddData( [ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click here to modify', '', '', '', '','', '', '','','','' ] ); // &nbsp; for first row
 	    var nRow = oTable.fnGetNodes( aiNew[0] );
 	    // editRow( oTable, nRow );
 	    nEditing = nRow;
@@ -144,38 +166,42 @@
 	} );
 
 
-
-
-$('#example tbody').on( 'click', 'tr', function () {
-        if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
-            // $('#deleteRow').attr('disabled','disabled');
-            // document.getElementById("#addRow").disabled = true;
-            $('#deleteRow').hide();
-        }
-        else {
-            oTable.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-            	// $('#deleteRow').removeAttr('disabled');
-            	// document.getElementById("#addRow").disabled = false;
-            	$('#deleteRow').show();
-        }
-    } );
-
-
-
-
-
-
-
-
-
-	// var oTable = $('#example').dataTable();
-/*	$('#deleteRow').click( function (e) {
+	$('#deleteRow_old').click( function (e) {
 	    e.preventDefault();
-		var aiNew = oTable.row('.selected').remove().draw( false );
+		// var aiNew = oTable.row('.selected').remove().draw( false );
+		// var oTT = TableTools.fnGetInstance( 'example' );
+    var aSelectedTrs = fnGetSelected( oTable );
+		alert( aSelectedTrs );
 
-	} );*/
+	} );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -295,6 +321,9 @@ $('#example tbody').on( 'click', 'tr', function () {
             									// col 10 Type type, null for own html content, here type: select
             									null,
 
+
+            									null,
+
 									
 
 									],
@@ -361,6 +390,35 @@ $('#example tbody').on( 'click', 'tr', function () {
 
 
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -526,14 +584,14 @@ $('div.toolbar').html('<b>Custom tool bar! Text/images etc.</b>');
 
 
 	<button id="addRow" id="addRow" name="addRow">+ Add <?php echo $nom_product;?> ...</button>
-	<button id="deleteRow" id="deleteRow" name="deleteRow" style="display:none">Delete <?php echo $nom_product;?> ...</button>
+	<button id="deleteRowX" id="deleteRowX" name="deleteRowX" style="display:none">Delete <?php echo $nom_product;?> ...</button>
 
 
 	<!-- ADD with form modal -->
 	<!-- to do hide on load -->
 
 	<!--  todo, better submit refresh  -->
-	<form id="formAddNewRow" action="#" title="Add" style="background: #c9b7a2;display:none;">
+	<form id="formAddNewRow" action="#" title="Add" style="background: #c9b7a2;display:none;visibility:hidden">
 	    
 		<input placeholder="Nom" class="form-field" type="text" name="nom" id="nom" rel="0" required/>*
 
@@ -594,6 +652,8 @@ $('div.toolbar').html('<b>Custom tool bar! Text/images etc.</b>');
 
 										echo "</select>"; 
 				?>
+
+		<input placeholder="delete"  class="form-field" type="text" name="delete" id="delete" rel="10" style="visibilityx:hidden"/>
 
 
 
@@ -685,7 +745,15 @@ $('div.toolbar').html('<b>Custom tool bar! Text/images etc.</b>');
 					echo "</td>";
 						
 
-					echo "</td>";
+					echo "<td><button id='deleteR' name='deleteR' onclick=\"deleteR('".$elements_id."','".$sql_table."');\">X</button></td>";
+					
+
+
+
+
+
+
+
 
 				echo "</tr>";
 
