@@ -16,18 +16,22 @@
     
     $elements = $db_handle->runQuery($GET_ALL_TB_ELEMENTS);
 
-    /*$result = mysql_query("SHOW COLUMNS FROM $TB_PRODUCTS");
-     if (mysql_num_rows($result) > 0) {
+    $arrayNameCols = array();
+    $result = mysql_query("SHOW COLUMNS FROM $sql_table");
+    if (mysql_num_rows($result) > 0) {
       while ($row = mysql_fetch_assoc($result)) {
         // print_r($row); // all infos
-        print_r($row['Field']);
-        // $arrayNameCols = "";
+        // print_r($row['Field']);
+        // array_push($arrayNameCols, $row['Field']);
+        if($row['Field']!="id"){$arrayNameCols[] = $row['Field'];}
+        
       }
-     }*/
+      array_push($arrayNameCols, ''); // '' is for delete col
+    }
 
     // OR CONFIG the column you want // todo, link with loop otable construct
-    // important excatly same name as db, '' is a special row, select type // to do better from db directly !?
-    $arrayNameCols = array('name','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','id_type','');  
+    // important excatly same name as db, '' is for delete col, select type // to do better from db directly !?
+    // $arrayNameCols = array('name','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','id_type','');  
 
 ?>
 
@@ -50,7 +54,7 @@
 <script type="text/javascript" charset="utf-8">
 
 	// to unify with types
-	function update_type_fromColor(ListColors,id,tb_sql,columnName){
+	function update_type_fromSelectColorList(ListColors,id,tb_sql,columnName){
 
 	    var ObjListe = document.getElementById(ListColors); 
 	    var SelIndex = ObjListe.selectedIndex; 
@@ -691,7 +695,7 @@ sDom: 'T<"clear">lfrtip',
         echo "<td width='11%;'>";
 
 
-						echo "<select id='ListTypes_".$elements_id."' onchange=\"update_type_fromColor('ListTypes_".$elements_id."','".$elements_id."','".$sql_table."','Id_Type');\" style=\"width:100%;height:100%;border:0px;outline:0px\"  >"; 
+						echo "<select id='ListTypes_".$elements_id."' onchange=\"update_type_fromSelectColorList('ListTypes_".$elements_id."','".$elements_id."','".$sql_table."','Id_Type');\" style=\"width:100%;height:100%;border:0px;outline:0px\"  >"; 
 							// todo owl_types  from globals, and conform with crud types.php
 			              	$sql2 = $db_handle->runQuery("SELECT * FROM ".$TB_TYPES."");
 			              	if(!empty($sql2)) {
