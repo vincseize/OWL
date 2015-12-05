@@ -404,11 +404,12 @@ sDom: 'T<"clear">lfrtip',
 
 							},
 
-							oDeleteRowButtonOptions: {	
+/*							oDeleteRowButtonOptions: {	
 											label: "Remove", 
 											icons: {primary:'ui-icon-trash'}
 
-							},
+							},*/
+              // oDeleteRowButtonOptions: null,
 
 							oAddNewRowFormOptions: { 	
                                             title: 'Add',
@@ -451,7 +452,7 @@ sDom: 'T<"clear">lfrtip',
 
 
 
-
+// fnDisableDeleteButton();
 
 
 
@@ -511,6 +512,24 @@ sDom: 'T<"clear">lfrtip',
 
 
 <style>
+
+#btnDeleteRow
+{
+display:none;
+}
+
+
+#btnAddNewRow
+{
+display:none;
+}
+
+
+
+
+
+
+
 
 
 
