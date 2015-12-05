@@ -16,13 +16,29 @@
     
     $elements = $db_handle->runQuery($GET_ALL_TB_ELEMENTS);
 
+    /*$result = mysql_query("SHOW COLUMNS FROM $TB_PRODUCTS");
+     if (mysql_num_rows($result) > 0) {
+      while ($row = mysql_fetch_assoc($result)) {
+        // print_r($row); // all infos
+        print_r($row['Field']);
+        // $arrayNameCols = "";
+      }
+     }*/
 
-
-    // CONFIG 
+    // OR CONFIG the column you want // todo, link with loop otable construct
     // important excatly same name as db, '' is a special row, select type // to do better from db directly !?
-    $arrayNameCols = array('name','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','type','');  
+    $arrayNameCols = array('name','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','id_type','');  
 
 ?>
+
+
+<?php
+
+?>
+
+
+
+
 
 
 <!-- http://www.laktek.com/2008/10/27/really-simple-color-picker-in-jquery/ 
