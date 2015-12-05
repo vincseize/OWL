@@ -1,19 +1,24 @@
 <?php
+    // require_once("__crudcontroller.php");
 
     require_once("../__Globals.php");
     require_once("__dbcontroller.php");
     $db_handle = new DBController();
-    $types = $db_handle->runQuery($GET_ALL_TB_TYPES);
-    $products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
     $this_filename = explode(".",__FILE__)[0];
     $this_container = "container_".explode("_",$this_filename)[1].".php";
     $ch = explode("_",$this_filename)[1];
 
-	include('__css_js_crud.php'); // don't touch emplacement
+    include('__css_js_crud.php'); // don't touch emplacement
 
-    // CONFIG
-    $elements = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
-    $sql_table = $TB_PRODUCTS;
+
+    if(explode("_",$this_filename)[1]=="products"){$GET_ALL_TB_ELEMENTS = $GET_ALL_TB_PRODUCTS;$sql_table = $TB_PRODUCTS;}
+    if(explode("_",$this_filename)[1]=="types"){$GET_ALL_TB_ELEMENTS = $GET_ALL_TB_TYPES;$sql_table = $TB_TYPES;}
+    
+    $elements = $db_handle->runQuery($GET_ALL_TB_ELEMENTS);
+
+
+
+    // CONFIG 
     // important excatly same name as db, '' is a special row, select type // to do better from db directly !?
     $arrayNameCols = array('name','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','type','');  
 
@@ -29,7 +34,7 @@
 <script type="text/javascript" charset="utf-8">
 
 	// to unify with types
-	function VerifColor_Type(ListColors,id,tb_sql,columnName){
+	function update_type_fromColor(ListColors,id,tb_sql,columnName){
 
 	    var ObjListe = document.getElementById(ListColors); 
 	    var SelIndex = ObjListe.selectedIndex; 
@@ -117,7 +122,7 @@
 
 
 		// default form add type select value
-		Select_Type();
+		// Select_Type();
 
 		// var id = -1;	//for simulation 
 		var tb = "<?php echo $sql_table; ?>";
@@ -600,103 +605,15 @@ sDom: 'T<"clear">lfrtip',
 
 
 
-<!-- <form class="form-container">
-<div class="form-title"><h2>Sign up</h2></div>
-<div class="form-title">Name</div>
-<input class="form-field" type="text" name="firstname" /><br />
-<div class="form-title">Email</div>
-<input class="form-field" type="text" name="email" /><br />
-<div class="submit-container">
-<input class="submit-button" type="submit" value="Submit" />
-</div>
-</form>
 
-
-
-
-
- -->
 
 
 	<button id="addRow" id="addRow" name="addRow">+ Add <?php echo $nom_product;?> ...</button>
 
-
-
-	<!-- ADD with form modal -->
-	<!-- to do hide on load -->
-
-	<!--  todo, better submit refresh  -->
-	<form id="formAddNewRow" action="#" title="Add" style="background: #c9b7a2;display:none;visibility:hidden">
-	    
-		<input placeholder="Nom" class="form-field" type="text" name="nom" id="nom" rel="0" required/>*
-
-	    <br />
-
-		<input placeholder="Localisation x" class="form-field" type="localisation_x" name="localisation_x" id="description" rel="1" required/>*
-
-	    <br />
-
-		<input placeholder="Localisation y" class="form-field" type="text" name="localisation_y" id="localisation_y" rel="2" required/>*
-
-	    <br />
-
-		<input placeholder="Ville" type="text" class="form-field" name="ville" id="ville" rel="3" />
-
-	    <br />
-
-		<input placeholder="Code Postal" type="text" class="form-field" name="code_postal" id="code_postal" rel="5" />
-
-	    <br />
-
-		<input placeholder="Adresse" type="text" class="form-field" name="adresse" id="adresse" rel="4" />
-
-	    <br />
-
-		<input placeholder="Pays" type="text" class="form-field" name="pays" id="pays" rel="6" />
-
-	    <br />
-
-		<textarea placeholder="Comments"  class="form-field" rows="3" cols="30" name="comments" id="comments" rel="7" ></textarea>
-
-	    <br />
-
-		<input placeholder="Phone"  class="form-field" type="text" name="phone" id="phone" rel="8" />
-
-	    <br />
-
-		<input placeholder="Type"  class="form-field" type="text" name="type" id="type" rel="9" style="visibilityx:hidden"/>
-		<label for="ListTypes">Type*</label>
-
-				<?php
-										// to do, background color, from unique select from commun to list and option
-										echo "<select id='ListTypes' name='ListTypes' onchange=\"Select_Type();\" style=\"width:100%;height:100%;border:0px;outline:0px\">*"; 
-											// todo owl_types  from globals, and conform with crud types.php
-							              	$sql2 = $db_handle->runQuery("SELECT * FROM ".$TB_TYPES."");
-							              	if(!empty($sql2)) {
-												foreach($sql2 as $kk=>$vv) {
-													$type_id 		= utf8_decode($sql2[$kk]["id"]);
-													$type_name 		= utf8_decode($sql2[$kk]["name"]);
-													$type_color 	= utf8_decode($sql2[$kk]["color"]);
-													$selected		= "";
-													if($type_id==$elements_id_type){$selected="selected";}
-													if($elements_id_type=="0"){$type_name="No Type Selected";} // debug todo better
-													echo "<option style=\"background-color:".$type_color.";width:100%;\" value='".$type_id."' $selected>".$type_name."</option>"; 
-
-												}
-											}
-
-										echo "</select>"; 
-				?>
-
-		<input placeholder="delete"  class="form-field" type="text" name="delete" id="delete" rel="10" style="visibilityx:hidden"/>
-
-
-
-	</form>
-	<!-- ADD with form modal -->
-
-
-
+  <!-- form to delete one day -->
+  <?php 
+                          include('form_to_delete.php');
+  ?>
 
 	<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
 		
@@ -731,34 +648,34 @@ sDom: 'T<"clear">lfrtip',
 		if(!empty($elements)) {
 			foreach($elements as $k=>$v) {
 
-				$elements_id 				= $elements[$k]["id"];
+				$elements_id           = $elements[$k]["id"];
 
-				$elements_nom 				= utf8_decode($elements[$k]["name"]); // to do ??? , find a simplification relation with column name array
-				$elements_localisation_x 	= utf8_decode($elements[$k]["localisation_x"]);
-				$elements_localisation_y 	= utf8_decode($elements[$k]["localisation_y"]);				
-				$elements_ville 			= utf8_decode($elements[$k]["ville"]);
-				$elements_code_postal 		= utf8_decode($elements[$k]["code_postal"]);	
-				$elements_adresse 			= utf8_decode($elements[$k]["adresse"]);
-				$elements_pays 				= utf8_decode($elements[$k]["pays"]);				
-				$elements_comments 			= utf8_decode($elements[$k]["comments"]);
-				$elements_phone 			= utf8_decode($elements[$k]["phone"]);	
-				$elements_id_type 			= utf8_decode($elements[$k]["id_type"]);
+				$elements_nom 				      = utf8_decode($elements[$k]["name"]); // to do ??? , find a simplification relation with column name array
+				$elements_localisation_x 	  = utf8_decode($elements[$k]["localisation_x"]);
+				$elements_localisation_y 	  = utf8_decode($elements[$k]["localisation_y"]);				
+				$elements_ville             = utf8_decode($elements[$k]["ville"]);
+				$elements_code_postal       = utf8_decode($elements[$k]["code_postal"]);	
+				$elements_adresse           = utf8_decode($elements[$k]["adresse"]);
+				$elements_pays              = utf8_decode($elements[$k]["pays"]);				
+				$elements_comments          = utf8_decode($elements[$k]["comments"]);
+				$elements_phone             = utf8_decode($elements[$k]["phone"]);	
+				$elements_id_type           = utf8_decode($elements[$k]["id_type"]);
 
 				echo "<tr id=".$elements_id.">";
 
-					echo "<td width='16%;'>".$elements_nom."</td>";
-					echo "<td width='2%;'>".$elements_localisation_x."</td>";
-					echo "<td width='2%;'>".$elements_localisation_y."</td>";
-					echo "<td>".$elements_ville."</td>";
-					echo "<td width='2%;'>".$elements_code_postal."</td>";
-					echo "<td>".$elements_adresse."</td>";
-					echo "<td width='10%;'>".$elements_pays."</td>";
-					echo "<td>".$elements_comments."</td>";
-					echo "<td width='7%;'>".$elements_phone."</td>";
-					echo "<td width='11%;'>";
+        echo "<td width='16%;'>".$elements_nom."</td>";
+        echo "<td width='2%;'>".$elements_localisation_x."</td>";
+        echo "<td width='2%;'>".$elements_localisation_y."</td>";
+        echo "<td>".$elements_ville."</td>";
+        echo "<td width='2%;'>".$elements_code_postal."</td>";
+        echo "<td>".$elements_adresse."</td>";
+        echo "<td width='10%;'>".$elements_pays."</td>";
+        echo "<td>".$elements_comments."</td>";
+        echo "<td width='7%;'>".$elements_phone."</td>";
+        echo "<td width='11%;'>";
 
 
-						echo "<select id='ListTypes_".$elements_id."' onchange=\"VerifColor_Type('ListTypes_".$elements_id."','".$elements_id."','".$sql_table."','Id_Type');\" style=\"width:100%;height:100%;border:0px;outline:0px\"  >"; 
+						echo "<select id='ListTypes_".$elements_id."' onchange=\"update_type_fromColor('ListTypes_".$elements_id."','".$elements_id."','".$sql_table."','Id_Type');\" style=\"width:100%;height:100%;border:0px;outline:0px\"  >"; 
 							// todo owl_types  from globals, and conform with crud types.php
 			              	$sql2 = $db_handle->runQuery("SELECT * FROM ".$TB_TYPES."");
 			              	if(!empty($sql2)) {
@@ -804,7 +721,6 @@ sDom: 'T<"clear">lfrtip',
 
 	</table>
 				
-
 
 				
 	</body>

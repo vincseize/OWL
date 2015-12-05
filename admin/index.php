@@ -12,11 +12,12 @@
     <?php
 
         require_once("../__Globals.php");
-        require_once("__dbcontroller.php");
+/*        require_once("__dbcontroller.php");
 
         $db_handle = new DBController();
-        $products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
-        $types = $db_handle->runQuery($GET_ALL_TB_TYPES);
+        $get_db_products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
+        $get_db_types = $db_handle->runQuery($GET_ALL_TB_TYPES);*/
+
 
     ?>
 

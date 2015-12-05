@@ -30,7 +30,7 @@
 <script type="text/javascript" charset="utf-8">
 
 	// to unify with products
-	function VerifColor_Type(ListColors,id,tb_sql,columnName){
+	function verif_typeColor(ListColors,id,tb_sql,columnName){
 
 	    var ObjListe = document.getElementById(ListColors); 
 	    var SelIndex = ObjListe.selectedIndex; 
@@ -218,7 +218,7 @@
 
 							echo "<td title='Click to edit' width='5%;' class='center' style='background-color:".$elements_color."' style=\"padding:0;margin:0;\"  >";
 
-								echo "<select id='ListColors_".$elements_id."' style='background-color:".$elements_color.";color:".$elements_color.";' onchange=\"VerifColor_Type('ListColors_".$elements_id."','".$elements_id."','".$sql_table."','Color');\" style=\"width:100%;height:100%;border:0px;outline:0px\"  >"; 
+								echo "<select id='ListColors_".$elements_id."' style='background-color:".$elements_color.";color:".$elements_color.";' onchange=\"verif_typeColor('ListColors_".$elements_id."','".$elements_id."','".$sql_table."','Color');\" style=\"width:100%;height:100%;border:0px;outline:0px\"  >"; 
 									foreach($colors_types as $color_type){
 										$color_type = "#".$color_type;
 										$selected="";
