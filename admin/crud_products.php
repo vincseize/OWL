@@ -102,8 +102,6 @@
 
 
 
-
-
 	$(document).ready( function () {
 
 
@@ -117,15 +115,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 		// default form add type select value
 		Select_Type();
 
@@ -135,7 +124,24 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 	var oTable = $('#example').dataTable( {
+
+
+
+
 		retrieve: true,
 	    paging: false,
 	    searching: false
@@ -210,21 +216,11 @@
 
 
 
-
-
-		$('#example').dataTable({ bJQueryUI: true,"sPaginationType": "full_numbers",}).makeEditable({
-		// $('#example').dataTable({ bJQueryUI: true,"sPaginationType": "full_numbers","sDom": '<"H"<"toolbar">fr>t<"F"ip>',}).makeEditable({
-
-
-
-		// $('#example').dataTable().makeEditable({ :: simply
-							/*sUpdateURL: function(value, settings)
-							{
-                     							return(value); //Simulation of server-side response using a callback function
-							},*/
-
-
-							// 
+// bJQueryUI --> Ui footer etc
+// bFilter: true --> search
+// bInfo ??
+		$('#example').dataTable({ bJQueryUI: true,bFilter: true, bInfo: false,bPaginate: true,"sPaginationType": "full_numbers","oAddNewRowButtonOptions": "destroy"}).makeEditable({
+		//$('#example').dataTable({ bJQueryUI: true,"sPaginationType": "full_numbers","sDom": '<\"H\"<\"toolbar\">fr>t<"F"ip>',}).makeEditable({
 
 
 
@@ -234,10 +230,33 @@
 
 
 
+/*
+
+
+sDom: 'T<"clear">lfrtip',
+        "oTableTools": {
+            "aButtons": [
+                "copy",
+                "print",
+                {
+                    "sExtends":    "collection",
+                    "sButtonText": "Save",
+                    "aButtons":    [ "csv", "xls", "pdf" ]
+                }
+            ]
+        },*/
 
 
 
-							// sDom: '<"toolbar">frtip',
+
+
+
+
+
+
+
+
+
 
 
 							sUpdateURL: "c_Update.php?sql_table="+tb,						
@@ -362,6 +381,7 @@
 							oDeleteRowButtonOptions: {	
 											label: "Remove", 
 											icons: {primary:'ui-icon-trash'}
+
 							},
 
 							oAddNewRowFormOptions: { 	
@@ -369,7 +389,7 @@
 											show: "blind",
 											hide: "blind",
 											// hide: "explode",
-                                            modal: true
+                                            // modal: true
                                             // oTable.fnDraw()
 							}	,
 							
@@ -442,7 +462,7 @@
 
 
 
-// $('div.toolbar').html('<b>Custom tool bar! Text/images etc.</b>');
+
 
 
 
@@ -759,7 +779,7 @@
 					echo "</td>";
 						
 
-					echo "<td><button id='deleteR' name='deleteR' onclick=\"deleteR('".$elements_id."','".$sql_table."');\">X</button></td>";
+					echo "<td><button style='outline: 0;border:0;background:none;color:red;font-weight:bold;'id='deleteR' name='deleteR' onclick=\"deleteR('".$elements_id."','".$sql_table."');\">X</button></td>";
 					
 
 
