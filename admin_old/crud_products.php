@@ -14,8 +14,7 @@
     // CONFIG
     $elements = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
     $sql_table = $TB_PRODUCTS;
-    // important excatly same name as db, '' is a special row, select type // to do better from db directly !?
-    $arrayNameCols = array('name','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','type','');  
+    $arrayNameCols = array('nom','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','type','');  
 
 ?>
 

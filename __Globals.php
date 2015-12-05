@@ -16,7 +16,8 @@
 	$nom_types = 'besoins';	
 	$height_header_home = '90';	// px todo
 	$color_header_home = '#09F';	// todo
-
+	$default_adminPage = 'list_products.php';
+	// $default_adminPage = 'list_types.php'
 
 	// LOG
 	$login_admin = 'admin';	
@@ -68,7 +69,7 @@
 	define('LOGIN_ADMIN',$login_admin);
 	define('PASSWORD_ADMIN',$password_admin);
 
-	$GET_ALL_TB_PRODUCTS = "SELECT * FROM ".$TB_PRODUCTS."  ORDER BY nom ASC";
+	$GET_ALL_TB_PRODUCTS = "SELECT * FROM ".$TB_PRODUCTS."  ORDER BY name ASC";
 	$GET_ALL_TB_TYPES = "SELECT * FROM ".$TB_TYPES."  ORDER BY name ASC";
 
 	$GET_ALL_TB_PRODUCTS_URL = "inc_mobile/CRUD_centres/get_all_centres.php?action_key=".$CRUD_ACTION_KEY;

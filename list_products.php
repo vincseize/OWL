@@ -69,7 +69,7 @@ div:empty:before {
 
 						$id = $centres[$k]["id"];
 
-						$centre_nom = utf8_decode($centres[$k]["nom"]);
+						$centre_nom = utf8_decode($centres[$k]["name"]);
 						$localisation_x = utf8_decode($centres[$k]["localisation_x"]);
 						$localisation_y = utf8_decode($centres[$k]["localisation_y"]);
 						$centre_ville = utf8_decode($centres[$k]["ville"]);
