@@ -31,9 +31,11 @@
 		// echo $id;
 
 
-		/*
+		
 
-			$fp = fopen('add.txt', 'w');
+/*			$fp = fopen('add.txt', 'w');
+			fwrite($fp, $sql_table);
+			fwrite($fp, "\n");
 			fwrite($fp, $name);
 			fwrite($fp, "\n");
 			fwrite($fp, $description);
@@ -56,7 +58,7 @@
 
 	if(	$sql_table==$TB_PRODUCTS){
 
-		$nom 				= mysql_real_escape_string(htmlentities($_REQUEST['nom'], ENT_QUOTES, "UTF-8"));
+		$name 				= mysql_real_escape_string(htmlentities($_REQUEST['name'], ENT_QUOTES, "UTF-8"));
 		$localisation_x 	= $_REQUEST['localisation_x'] ;
 		$localisation_y 	= $_REQUEST['localisation_y'] ;
 		$ville 				= mysql_real_escape_string(htmlentities($_REQUEST['ville'], ENT_QUOTES, "UTF-8"));
@@ -68,6 +70,8 @@
 		$id_type 			= $_REQUEST['type'];		
 
 /*			$fp = fopen('add.txt', 'w');
+			fwrite($fp, $sql_table);
+			fwrite($fp, "\n");
 			fwrite($fp, $nom);
 			fwrite($fp, "\n");
 			fwrite($fp, $localisation_x);
@@ -85,9 +89,9 @@
 		// if(isset($nom)){ $nom = mysql_real_escape_string(htmlentities($nom, ENT_QUOTES, "UTF-8")); };
 		// if(isset($comments)){ $comments = mysql_real_escape_string(htmlentities($comments, ENT_QUOTES, "UTF-8")); };
 
-		$result = mysql_query("INSERT INTO ".$sql_table." (nom, localisation_x, localisation_y, ville, code_postal, adresse, pays, comments, phone, id_type) VALUES ('".$nom."','".$localisation_x."','".$localisation_y."','".$ville."','".$code_postal."','".$adresse."','".$pays."','".$comments."','".$phone."','".$id_type."')" );
+		$result = mysql_query("INSERT INTO ".$sql_table." (name, localisation_x, localisation_y, ville, code_postal, adresse, pays, comments, phone, id_type) VALUES ('".$name."','".$localisation_x."','".$localisation_y."','".$ville."','".$code_postal."','".$adresse."','".$pays."','".$comments."','".$phone."','".$id_type."')" );
 
-		echo $_REQUEST['nom']; // Important, for not alert !  or id ????
+		echo $_REQUEST['name']; // Important, for not alert !  or id ????
 
 	}
 

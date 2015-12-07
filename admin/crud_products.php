@@ -8,41 +8,16 @@
     $this_container = "container_".explode("_",$this_filename)[1].".php";
     $ch = explode("_",$this_filename)[1];
 
-    include('__css_js_crud.php'); // don't touch emplacement
+    include('__css_js_crud.php'); // don't touch emplacement line 
 
+    //////////////////////////////////////////////// Column name ///////////////////////////////////////////
+    // CONFIG your own columns you want to show | default are same as db columns // todo, link with loop otable construct
+    // important excatly same name as db
+    // $arrayNameCols = array('name','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','type');  
 
-    if(explode("_",$this_filename)[1]=="products"){$GET_ALL_TB_ELEMENTS = $GET_ALL_TB_PRODUCTS;$sql_table = $TB_PRODUCTS;}
-    if(explode("_",$this_filename)[1]=="types"){$GET_ALL_TB_ELEMENTS = $GET_ALL_TB_TYPES;$sql_table = $TB_TYPES;}
-    
-    $elements = $db_handle->runQuery($GET_ALL_TB_ELEMENTS);
-
-    $arrayNameCols = array();
-    $result = mysql_query("SHOW COLUMNS FROM $sql_table");
-    if (mysql_num_rows($result) > 0) {
-      while ($row = mysql_fetch_assoc($result)) {
-        // print_r($row); // all infos
-        // print_r($row['Field']);
-        // array_push($arrayNameCols, $row['Field']);
-        if($row['Field']!="id"){$arrayNameCols[] = $row['Field'];}
-        
-      }
-      array_push($arrayNameCols, ''); // '' is for delete col
-    }
-
-    // OR CONFIG the column you want // todo, link with loop otable construct
-    // important excatly same name as db, '' is for delete col, select type // to do better from db directly !?
-    // $arrayNameCols = array('name','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','id_type','');  
+    //////////////////////////////////////////////// end Colum name ///////////////////////////////////////////
 
 ?>
-
-
-<?php
-
-?>
-
-
-
-
 
 
 <!-- http://www.laktek.com/2008/10/27/really-simple-color-picker-in-jquery/ 
@@ -61,27 +36,12 @@
 	    var SelValue = encodeURIComponent(ObjListe.options[ObjListe.selectedIndex].value); 
 	    var SelText = ObjListe.options[ObjListe.selectedIndex].text; 
 
-	    // var id = id;
-	    // var columnName = "color";
 	    var color = SelValue;
 
 	    $.post('c_Update.php?sql_table='+tb_sql+'&columnName='+columnName+'&id='+id+'&value='+color+'');
-	    // $( "#home_container" ).load( "container_types.php" ); // todo better refresh
-	    $(this).parent().load("<?php echo $this_container; ?>"); // todo better refresh
-
-	    /*
-	    if(color!="New_Color"){
-	        $.post('c_Update.php?sql_table='+tb+'&columnName='+columnName+'&id='+id+'&value='+color+'');
-	        $( "#home_container" ).load( "edit_types.php" );
-	    }
-
-	    if(color=="New_Color"){
-	        $( "#dialog_newColor" ).dialog(); 
-	    }
-	    */
+	    $(this).parent().load("<?php echo $this_container; ?>"); 
 
 	}
-
 
 
 	function Select_Type(){
@@ -100,8 +60,6 @@
 		// onChange css color select to change
 
 	}
-
-
 
 
 	function deleteR(id,tb){
@@ -513,16 +471,7 @@ sDom: 'T<"clear">lfrtip',
 
 <style>
 
-#btnDeleteRow
-{
-display:none;
-}
 
-
-#btnAddNewRow
-{
-display:none;
-}
 
 
 
@@ -647,7 +596,7 @@ display:none;
 
 
 
-	<button id="addRow" id="addRow" name="addRow">+ Add <?php echo $nom_product;?> ...</button>
+	<button class="addRow" id="addRow" name="addRow">+ Add <?php echo $nom_product;?> ...</button>
 
   <!-- form to delete one day -->
   <?php 
@@ -660,6 +609,7 @@ display:none;
 		<thead>
 			<tr>
 				<?php
+          array_push($arrayNameCols, ''); // '' is for delete last column 
 					foreach ($arrayNameCols as $value){
 					    echo "<th>".ucfirst ($value)."</th>";
 					}
