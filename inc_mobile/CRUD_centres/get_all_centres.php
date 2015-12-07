@@ -129,7 +129,7 @@ foreach($json->people as $item)
                 // temp array
                 $product = array();
                 $product["id"] = $row["id"];
-                $product["nom"] = $row["nom"];
+                $product["name"] = $row["name"];
 
                 $product["localisation_x"] = $row["localisation_x"];
                 $product["localisation_y"] = $row["localisation_y"];
