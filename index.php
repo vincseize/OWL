@@ -15,7 +15,7 @@
         require_once("admin/__dbcontroller.php");
         $db_handle = new DBController();
         $types = $db_handle->runQuery($GET_ALL_TB_TYPES);
-        $centres = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
+        $products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
 
     ?>
 
@@ -202,10 +202,15 @@
     <span class="custom-dropdown custom-dropdown--white">
         <select class="custom-dropdown__select custom-dropdown__select--white">
             <option>Show All wip</option>
-            <option>Type1</option>
-            <option>Type2</option>
-            <option>Type3</option>
-            <option>Type4</option>
+            <?php 
+                if(!empty($types)) {
+                    foreach($types as $k=>$v) {
+                    $id = $types[$k]["id"];
+                    $name = utf8_decode($types[$k]["name"]);
+                    echo "<option value=".$id.">$name</option>";
+                }
+            }
+            ?>
         </select>
     </span>
     </div>
