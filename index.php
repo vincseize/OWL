@@ -68,6 +68,18 @@
         padding: 0px;
     }
 
+    .filters {
+        position:absolute;
+        z-index: 9999;
+
+        text-align:center;
+        top:40px;  
+        right:12px;      
+        background-color: #222;
+        display: block;
+        padding: 0px;
+    }
+
     .logo {
         position: absolute;
         z-index: 10000;
@@ -183,6 +195,22 @@
         </form>
     </div>
     <!-- /#login -->
+
+
+    <!-- #filters -->
+    <div id="filters" class="filters">
+    <span class="custom-dropdown custom-dropdown--white">
+        <select class="custom-dropdown__select custom-dropdown__select--white">
+            <option>Show All wip</option>
+            <option>Type1</option>
+            <option>Type2</option>
+            <option>Type3</option>
+            <option>Type4</option>
+        </select>
+    </span>
+    </div>
+    <!-- #filters -->
+
 
 
 
