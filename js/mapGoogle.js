@@ -168,7 +168,7 @@ function Legend(controlDiv, map, types) {
                           for (var i = 0; i < jsonData.centres.length; i++) {
                               list = [];
                               var counter = jsonData.centres[i];
-                              list.push(counter.nom);
+                              list.push(counter.name);
                               list.push(counter.localisation_x);
                               list.push(counter.localisation_y);
                               list.push(counter.name_type);
@@ -176,7 +176,7 @@ function Legend(controlDiv, map, types) {
                               list.push("title");
                               locations.push(list);
 
-                              //console.log(counter.nom);
+                              //console.log(counter.name);
                           }
                           locations.push(list);
                           // console.log(locations);
