@@ -24,6 +24,7 @@
 <!-- http://www.laktek.com/2008/10/27/really-simple-color-picker-in-jquery/ -->
 <script language="javascript" type="text/javascript" src="../js/jquery.colorPicker.js"/></script>
 <script language="javascript" type="text/javascript" src="../js/owl.js"/></script>
+<script language="javascript" type="text/javascript" src="js/crud.js"/></script>
 <link rel="stylesheet" href="../css/colorPicker.css" type="text/css" />
 
 
@@ -57,6 +58,25 @@
 	    */
 
 	}
+
+
+	function deleteR_old(id,tb){
+		var tr = $('#' + id);  
+		tr.css("background-color","#FF3700"); // console.log(id);console.log(tb);
+
+		if (confirm("Are you sure you want to delete this?")) {
+			$.post( "c_Delete.php?sql_table="+tb+"&id="+id );
+			tr.remove();
+		    // console.log(id);
+		} else {
+		    // tr.removeAttr( 'background-color' );
+		    tr.css("background-color","");		    	
+		    false;
+		}   
+
+		// $(this).parent().load("<?php echo $this_container; ?>");*/
+
+	} 
 
 
 	$(document).ready( function () {
@@ -206,6 +226,7 @@
 	    <label for="color">Color</label><br />
 	    <input id="color_new" name="color_new" type="text" value="#333399"/>
 		<input type="text" name="color" id="color" style="visibility:hidden" rel="2" /> 
+		<input placeholder="delete"  class="form-field" type="text" name="delete" id="delete" rel="3" style="visibilityx:hidden"/>
 
 
 	    <br />
@@ -220,8 +241,14 @@
 		<thead>
 			<tr>
 				<?php
-					foreach ($arrayNameCols as $value){
+/*					foreach ($arrayNameCols as $value){
 					    echo "<th>".ucfirst ($value)."</th>";
+					}*/
+				?>
+				<?php
+          			array_push($arrayNameCols, ''); // '' is for delete last column 
+					foreach ($arrayNameCols as $value){
+						echo "<th>".ucfirst ($value)."</th>";
 					}
 				?>
 			</tr>
@@ -272,6 +299,9 @@
 								echo "</select>"; 
 
 							echo "</td>";
+
+							echo "<td><button style='outline: 0;border:0;background:none;color:red;font-weight:bold;'id='deleteR' name='deleteR' onclick=\"deleteR('".$elements_id."','".$sql_table."');\">X</button></td>";
+		
 
 						echo "</tr>";
 

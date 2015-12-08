@@ -22,6 +22,7 @@
 <!-- http://www.laktek.com/2008/10/27/really-simple-color-picker-in-jquery/ 
 <script language="javascript" type="text/javascript" src="../js/jquery.colorPicker.js"/></script>-->
 <script language="javascript" type="text/javascript" src="../js/owl.js"/></script>
+<script language="javascript" type="text/javascript" src="js/crud.js"/></script>
 <link rel="stylesheet" href="../css/colorPicker.css" type="text/css" />
 <link rel="stylesheet" href="../css/owl.css" type="text/css" />
 
@@ -61,7 +62,7 @@
 	}
 
 
-	function deleteR(id,tb){
+	function deleteR_old(id,tb){
 		var tr = $('#' + id);  
 		tr.css("background-color","#FF3700");
 
