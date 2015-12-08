@@ -4,7 +4,7 @@ require_once("__Globals.php");
 require_once("admin/__dbcontroller.php");
 $db_handle = new DBController();
 $types = $db_handle->runQuery($GET_ALL_TB_TYPES);
-$centres = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
+$products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
 
 ?>
 

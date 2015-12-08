@@ -4,7 +4,7 @@ require_once("__Globals.php");
 require_once("admin/__dbcontroller.php");
 $db_handle = new DBController();
 $types = $db_handle->runQuery($GET_ALL_TB_TYPES);
-$centres = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
+$products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
 
 ?>
 
@@ -63,31 +63,31 @@ div:empty:before {
 
 				<?php
 
-					if(!empty($centres)) {
-						foreach($centres as $k=>$v) {
+					if(!empty($products)) {
+						foreach($products as $k=>$v) {
 
 
-						$id = $centres[$k]["id"];
+						$id = $products[$k]["id"];
 
-						$centre_nom = utf8_decode($centres[$k]["name"]);
-						$localisation_x = utf8_decode($centres[$k]["localisation_x"]);
-						$localisation_y = utf8_decode($centres[$k]["localisation_y"]);
-						$centre_ville = utf8_decode($centres[$k]["ville"]);
+						$centre_nom = utf8_decode($products[$k]["name"]);
+						$localisation_x = utf8_decode($products[$k]["localisation_x"]);
+						$localisation_y = utf8_decode($products[$k]["localisation_y"]);
+						$centre_ville = utf8_decode($products[$k]["ville"]);
 
-						$adresse = utf8_decode(nl2br($centres[$k]["adresse"]));
+						$adresse = utf8_decode(nl2br($products[$k]["adresse"]));
 						$adresse = str_replace("\\", "", $adresse);
 						$adresse = preg_replace("#\\\#","",$adresse);
 
-						$code_postal = utf8_decode($centres[$k]["code_postal"]);
-						$pays = utf8_decode($centres[$k]["pays"]);
+						$code_postal = utf8_decode($products[$k]["code_postal"]);
+						$pays = utf8_decode($products[$k]["pays"]);
 
-						$comments = utf8_decode(nl2br($centres[$k]["comments"]));
+						$comments = utf8_decode(nl2br($products[$k]["comments"]));
 						$comments = str_replace("\\", "", $comments);
 						$comments = preg_replace("#\\\#","",$comments);
 
 
-						$phone = utf8_decode($centres[$k]["phone"]);
-						$id_type = utf8_decode($centres[$k]["id_type"]);
+						$phone = utf8_decode($products[$k]["phone"]);
+						$id_type = utf8_decode($products[$k]["id_type"]);
 
 
 						// default values

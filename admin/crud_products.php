@@ -1,5 +1,4 @@
 <?php
-    // require_once("__crudcontroller.php");
 
     require_once("../__Globals.php");
     require_once("__dbcontroller.php");
@@ -89,51 +88,32 @@
 	$(document).ready( function () {
 
 
+  	$body = $("body");
 
-	$body = $("body");
-
-	// loader
-    $body.addClass("loading");
-	// end loader
+  	// loader
+      $body.addClass("loading");
+  	// end loader
     // $body.removeClass("loading");
 
 
+  	// default form add type select value
+  	// Select_Type();
 
-		// default form add type select value
-		// Select_Type();
-
-		// var id = -1;	//for simulation 
-		var tb = "<?php echo $sql_table; ?>";
-		var ch = "<?php echo $ch; ?>";
-
+  	// var id = -1;	//for simulation 
+  	var tb = "<?php echo $sql_table; ?>";
+  	var ch = "<?php echo $ch; ?>";
 
 
+  	var oTable = $('#example').dataTable( {
 
+  		retrieve: true,
+  	    paging: false,
+  	    searching: false
 
+  	} );
 
-
-
-
-
-
-
-
-
-
-
-	var oTable = $('#example').dataTable( {
-
-
-
-
-		retrieve: true,
-	    paging: false,
-	    searching: false
-
-	} );
-
-	oTable.fnDestroy();
-				// oTable.fnDraw(false);
+  	oTable.fnDestroy();
+  	// oTable.fnDraw(false);
 
     var nEditing = null;
 
@@ -141,77 +121,42 @@
 
 
 
-	$('#addRow').click( function (e) {
-	    e.preventDefault();
+  	$('#addRow').click( function (e) {
+  	    e.preventDefault();
 
-		$body.addClass("loading");
+  		$body.addClass("loading");
 
-	    var aiNew = oTable.fnAddData( [ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click here to modify', '', '', '', '','', '', '','','','' ] ); // &nbsp; for first row
-	    var nRow = oTable.fnGetNodes( aiNew[0] );
-	    // editRow( oTable, nRow );
-	    nEditing = nRow;
-	    
-	    $.post( "c_Add.php?sql_table="+tb ); // todo refresh
+  	    var aiNew = oTable.fnAddData( [ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click here to modify', '', '', '', '','', '', '','','','' ] ); // &nbsp; for first row
+  	    var nRow = oTable.fnGetNodes( aiNew[0] );
+  	    // editRow( oTable, nRow );
+  	    nEditing = nRow;
+  	    
+  	    $.post( "c_Add.php?sql_table="+tb ); // todo refresh
 
-		// oTable.fnDestroy();
-		// oTable.fnDraw();
+  		// oTable.fnDestroy();
+  		// oTable.fnDraw();
 
-		$(this).parent().load("<?php echo $this_container; ?>");
+  		$(this).parent().load("<?php echo $this_container; ?>");
 
-	} );
-
-
-	$('#deleteRow_old').click( function (e) {
-	    e.preventDefault();
-		// var aiNew = oTable.row('.selected').remove().draw( false );
-		// var oTT = TableTools.fnGetInstance( 'example' );
-    	var aSelectedTrs = fnGetSelected( oTable );
-		alert( aSelectedTrs );
-
-	} );
+  	} );
 
 
+  	$('#deleteRow_old').click( function (e) {
+  	    e.preventDefault();
+  		// var aiNew = oTable.row('.selected').remove().draw( false );
+  		// var oTT = TableTools.fnGetInstance( 'example' );
+      	var aSelectedTrs = fnGetSelected( oTable );
+  		alert( aSelectedTrs );
+
+  	} );
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// bJQueryUI --> Ui footer etc
-// bFilter: true --> search
-// bInfo ??
+    // bJQueryUI --> Ui footer etc
+    // bFilter: true --> search
+    // bInfo ??
 		$('#example').dataTable({ bJQueryUI: true,bFilter: true, bInfo: false,bPaginate: true,"sPaginationType": "full_numbers","oAddNewRowButtonOptions": "destroy"}).makeEditable({
 		//$('#example').dataTable({ bJQueryUI: true,"sPaginationType": "full_numbers","sDom": '<\"H\"<\"toolbar\">fr>t<"F"ip>',}).makeEditable({
-
-
-
-
-
-
-
 
 
 /*
@@ -229,17 +174,6 @@ sDom: 'T<"clear">lfrtip',
                 }
             ]
         },*/
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -387,70 +321,22 @@ sDom: 'T<"clear">lfrtip',
 		});
 	
 
+// $("#example").fnDestroy().dataTable();
+// $("#example").fnDestroy().dataTable();
 
-
-
-
-										// $("#example").fnDestroy().dataTable();
-										// $("#example").fnDestroy().dataTable();
-
-
-										// console.log("tesst return");
-
-
-
-	
-
-
-
-
-
-
-
-
-
+// console.log("tesst return");
 
 // fnDisableDeleteButton();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// end loading
-    $body.removeClass("loading");
+  // end loading
+  $body.removeClass("loading");
 
 
 
 
 } );
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -598,7 +484,7 @@ sDom: 'T<"clear">lfrtip',
 
 	<button class="addRow" id="addRow" name="addRow">+ Add <?php echo $nom_product;?> ...</button>
 
-  <!-- form to delete one day -->
+  <!-- form necessary for add ??? to delete one day -->
   <?php 
                           include('form_to_delete.php');
   ?>

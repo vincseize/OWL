@@ -61,6 +61,13 @@
 
 	$(document).ready( function () {
 
+
+		$body = $("body");
+
+		// loader
+	    $body.addClass("loading");
+
+
 		$('#color_new').colorPicker();
 		$("#color").val($("#color_new").val());
 		//fires an event when the color is changed
@@ -135,6 +142,36 @@
 
 		});
 		
+
+
+	$('#addRow').click( function (e) {
+	    e.preventDefault();
+	    // console.log('add');
+	    $("#formAddNewRow").dialog('open');
+	});
+
+	$('#btnAddNewRowOk').click( function (e) {
+	    e.preventDefault();
+	    // console.log('add');
+	    $("#formAddNewRow").dialog('close');
+
+
+		//code before the pause
+		setTimeout(function(){
+		    $body.addClass("loading");
+		    $( "#home_container" ).load('<?php echo $this_container; ?>'); // todo better refresh
+		    $body.removeClass("loading");
+		}, 1000);
+
+
+	});
+
+
+
+
+  // end loading
+  $body.removeClass("loading");
+
 } );
 
 
@@ -145,6 +182,12 @@
 
 <body id="index" class="grid_2_3">
 		
+
+	<div class="modalLoading"><!-- Place at bottom of page --></div>
+
+
+	<button class="addRow" id="addRow" name="addRow">+ Add <?php echo $nom_type;?> ...</button>
+
 	<!-- Form for add to do hide on load -->
 
 	<!--     todo, better submit refresh -->

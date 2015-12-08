@@ -71,7 +71,7 @@
                         <a href="#" class="a_menu" onClick="load_div('home_container','container_products.php');"><i class="fa fa-fw fa-edit"></i> Gestion <?php echo ucfirst($nom_products) ;?></a>
                     </li>                    
                     <li>
-                        <a href="#" class="a_menuTodo" onClick="load_div('home_container','container_types.php');"><i class="fa fa-fw fa-filter"></i> Gestion <?php echo ucfirst($nom_types) ;?></a>
+                        <a href="#" class="a_menu" onClick="load_div('home_container','container_types.php');"><i class="fa fa-fw fa-filter"></i> Gestion <?php echo ucfirst($nom_types) ;?></a>
                     </li>
 
                 </ul>
