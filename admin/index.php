@@ -1,3 +1,14 @@
+<?php
+session_start(); 
+if (!isset($_SESSION['password'])){
+    // echo "false";
+    @session_unset(oid);
+    @session_destroy(oid);    
+    header("location: ../index.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,7 +103,11 @@
 
 
 
-            <?php include("../".$default_adminPage.""); ?>
+            <?php 
+
+            include("../".$default_adminPage.""); 
+
+            ?>
 
         </div>
         <!-- /#home_container -->

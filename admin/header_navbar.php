@@ -12,6 +12,6 @@
 <!-- Top Menu Items -->
 <ul class="nav navbar-right top-nav">
     <li>
-    <a href="../index.php"><i class="fa fa-fw fa-gear"></i> Disconnect back to Home</a>
+    <a href="../unregister.php"><i class="fa fa-fw fa-gear"></i> Disconnect back to Home</a>
     </li>
 </ul>

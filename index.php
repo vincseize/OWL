@@ -1,3 +1,12 @@
+<?php 
+    require_once("__Globals.php");
+    require_once("admin/__dbcontroller.php");
+    $db_handle = new DBController();
+    $types = $db_handle->runQuery($GET_ALL_TB_TYPES);
+    $products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
+
+    include('register.php');    
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,15 +18,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <?php
 
-        require_once("__Globals.php");
-        require_once("admin/__dbcontroller.php");
-        $db_handle = new DBController();
-        $types = $db_handle->runQuery($GET_ALL_TB_TYPES);
-        $products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
-
-    ?>
 
     <title><?php echo $nom_project; ?></title> 
 
@@ -187,10 +188,10 @@
 
     <!-- #login -->
     <div id="login" class="login">
-        <form action="secret.php" method="post">
+        <form action="register.php" method="post">
             <p>
-            <input type="password" name="mot_de_passe" />
-            <input type="submit" value="login" />
+            <input type="password" name="password" id="password" placeholder="**********" type="password"/>
+            <input type="submit" name="submit" id="submit" value="login" />
             </p>
         </form>
     </div>
