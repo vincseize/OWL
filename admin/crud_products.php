@@ -12,7 +12,7 @@
     //////////////////////////////////////////////// Column name ///////////////////////////////////////////
     // CONFIG your own columns you want to show | default are same as db columns // todo, link with loop otable construct
     // important excatly same name as db
-    // $arrayNameCols = array('name','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','type');  
+    $arrayNameCols = array('name','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','public','horaires','type');  
 
     //////////////////////////////////////////////// end Colum name ///////////////////////////////////////////
 
@@ -127,7 +127,7 @@
 
   		$body.addClass("loading");
 
-  	    var aiNew = oTable.fnAddData( [ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click here to modify', '', '', '', '','', '', '','','','' ] ); // &nbsp; for first row
+  	    var aiNew = oTable.fnAddData( [ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click here to modify', '', '', '', '','', '', '','','','','','' ] ); // &nbsp; for first row
   	    var nRow = oTable.fnGetNodes( aiNew[0] );
   	    // editRow( oTable, nRow );
   	    nEditing = nRow;
@@ -185,9 +185,9 @@ sDom: 'T<"clear">lfrtip',
 										            },*/
 
 
-                     		sAddHttpMethod: "GET",
-                            sDeleteHttpMethod: "GET",
-							sDeleteURL: "c_Delete.php?sql_table="+tb,
+                          sAddHttpMethod: "GET",
+                          sDeleteHttpMethod: "GET",
+                          sDeleteURL: "c_Delete.php?sql_table="+tb,
 										
 									
             							"aoColumns": [
@@ -248,10 +248,10 @@ sDom: 'T<"clear">lfrtip',
 
             									// col 8 comments
             									{ 	
-        									        indicator: 'Saving ...',
-													type: 'textarea',
-                                         			submit:'Save',
-            										callback : function(value, settings) {}                                         			
+                                indicator: 'Saving ...',
+                                type: 'textarea',
+                                submit:'Save',
+                                callback : function(value, settings) {}                                         			
             									},
 
             									// col 9 phone
@@ -261,7 +261,21 @@ sDom: 'T<"clear">lfrtip',
             										callback : function(value, settings) {}
             									},
 
-            									// col 10 Type type, null for own html content, here type: select
+                              // col 10 public
+                              {   
+                                cssclass: "required",
+                                indicator: 'Saving ...',
+                                callback : function(value, settings) {}
+                              },
+
+                              // col 11 horaires
+                              {   
+                                cssclass: "required",
+                                indicator: 'Saving ...',
+                                callback : function(value, settings) {}
+                              },
+
+            									// col 12 Type type, null for own html content, here type: select
             									null,
 
 
@@ -535,6 +549,8 @@ sDom: 'T<"clear">lfrtip',
 				$elements_pays              = utf8_decode($elements[$k]["pays"]);				
 				$elements_comments          = utf8_decode($elements[$k]["comments"]);
 				$elements_phone             = utf8_decode($elements[$k]["phone"]);	
+        $elements_public         = utf8_decode($elements[$k]["public"]);
+        $elements_horaires           = utf8_decode($elements[$k]["horaires"]);  
 				$elements_id_type           = utf8_decode($elements[$k]["id_type"]);
 
 				echo "<tr id=".$elements_id.">";
@@ -548,6 +564,8 @@ sDom: 'T<"clear">lfrtip',
         echo "<td width='10%;'>".$elements_pays."</td>";
         echo "<td>".$elements_comments."</td>";
         echo "<td width='7%;'>".$elements_phone."</td>";
+        echo "<td>".$elements_public."</td>";
+        echo "<td width='7%;'>".$elements_horaires."</td>";
         echo "<td width='11%;'>";
 
 

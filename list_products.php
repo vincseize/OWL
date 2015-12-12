@@ -87,6 +87,9 @@ div:empty:before {
 
 
 						$phone = utf8_decode($products[$k]["phone"]);
+						$public = utf8_decode($products[$k]["public"]);
+						$horaires = utf8_decode($products[$k]["horaires"]);
+
 						$id_type = utf8_decode($products[$k]["id_type"]);
 
 
@@ -130,13 +133,15 @@ div:empty:before {
 		                                    echo "</div>";
 		                                    echo "<div class='col-xs-9 text-right'>";
 		                                        echo "<div class='medium' style='font-size:20px;font-weight:bold;'>".$centre_nom."</div>";
-		                                        echo "<div>".$localisation_x."</div>";		                                        
-		                                        echo "<div>".$localisation_y."</div>";		                                        	                                        
-		                                        echo "<div>".$pays."</div>";
-		                                        echo "<div>".$centre_ville."</div>";
-		                                        echo "<div>".$code_postal."</div>";
-		                                        echo "<div>".$adresse."</div>";
-		                                        echo "<div>".$phone."</div>";
+													echo "<div>".$localisation_x."</div>";		                                        
+													echo "<div>".$localisation_y."</div>";		                                        	                                        
+													echo "<div>".$pays."</div>";
+													echo "<div>".$centre_ville."</div>";
+													echo "<div>".$code_postal."</div>";
+													echo "<div>".$adresse."</div>";
+													echo "<div>".$phone."</div>";
+													echo "<div>".$public."</div>";
+													echo "<div>".$horaires."</div>";		                                        
 		                                    echo "</div>";
 		                                echo "</div>";
 		                            echo "</div>";

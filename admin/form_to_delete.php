@@ -41,7 +41,17 @@
 
 	    <br />
 
-		<input placeholder="Type"  class="form-field" type="text" name="type" id="type" rel="9" style="visibilityx:hidden"/>
+		<input placeholder="Public"  class="form-field" type="text" name="public" id="public" rel="9" />
+
+		<br />
+
+		<input placeholder="Horaires"  class="form-field" type="text" name="horaires" id="horaires" rel="10" />
+
+	    <br />
+
+
+
+		<input placeholder="Type"  class="form-field" type="text" name="type" id="type" rel="11" style="visibilityx:hidden"/>
 		<label for="ListTypes">Type*</label>
 
 				<?php
@@ -65,7 +75,7 @@
 										echo "</select>"; 
 				?>
 
-		<input placeholder="delete"  class="form-field" type="text" name="delete" id="delete" rel="10" style="visibilityx:hidden"/>
+		<input placeholder="delete"  class="form-field" type="text" name="delete" id="delete" rel="12" style="visibilityx:hidden"/>
 
 
 
