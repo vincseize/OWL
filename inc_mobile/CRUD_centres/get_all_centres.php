@@ -66,6 +66,7 @@ function searchJson_type($response_type,$id) {
     foreach($response_type["types"] as $type) {
         if($type['id'] == $id) {
             //echo "id = " . $type['name'];
+            //$id_type = $type['id'];
             $name_type = $type['name'];
             $description_type = $type['comments'];
             $color_type = $type['color'];

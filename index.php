@@ -5,7 +5,13 @@
     $types = $db_handle->runQuery($GET_ALL_TB_TYPES);
     $products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
 
-    include('register.php');    
+    include('register.php'); 
+
+    $id_type='All';
+    if(isset($_GET["id_type"])){
+        $id_type=$_GET["id_type"];
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,21 +108,21 @@
 
     <scriptSampleDes src="http://maps.google.com/maps/api/js?key=LRDS_GOOGLEMAP_API_KEY" type="text/javascript"></script>
 
-
-    <script 
-            src="http://maps.google.com/maps/api/js"      
-            type="text/javascript">
-    </script>
-
-
+    <script src="http://maps.google.com/maps/api/js" type="text/javascript"></script>
 
     <script src="js/mapGoogle.js" type="text/javascript"></script>
 
+    <script>
+        function searchType(id_type){
+            if(id_type!='All'){location.href = "index.php?id_type="+id_type;}   
+            if(id_type=='All'){location.href = "index.php"}   
+        }
+    </script>
 
 
 </head>
 
-<body onload="initialize();">
+<body onload="initialize('<?php echo $id_type; ?>');">
 
 
 
@@ -201,16 +207,19 @@
     <!-- #filters -->
     <div id="filters" class="filters">
     <span class="custom-dropdown custom-dropdown--white">
-        <select class="custom-dropdown__select custom-dropdown__select--white">
-            <option>Show All wip</option>
+        <select class="custom-dropdown__select custom-dropdown__select--white" onchange="searchType(this.options[this.selectedIndex].value);">
+            <option value="All">Show All</option>
             <?php 
+               
                 if(!empty($types)) {
                     foreach($types as $k=>$v) {
-                    $id = $types[$k]["id"];
-                    $name = utf8_decode($types[$k]["name"]);
-                    echo "<option value=".$id.">$name</option>";
+                        $selected = "";
+                        $id = $types[$k]["id"];
+                        $name = utf8_decode($types[$k]["name"]);
+                        if($id_type==$id){$selected = "selected";}
+                        echo "<option value=".$id." ".$selected.">$name</option>";
+                    }
                 }
-            }
             ?>
         </select>
     </span>

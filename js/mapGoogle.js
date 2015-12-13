@@ -114,9 +114,10 @@ function Legend(controlDiv, map, types) {
 
 
 
-  function initialize() {
+  function initialize(id_type) {
 
-
+          var id_type = id_type;
+          var color='000000';
 
           //////////////////////////////////////////////////////////////////////////// GET GLOBALS 
           get_Globals();
@@ -161,22 +162,46 @@ function Legend(controlDiv, map, types) {
 
 
                           var locations = [];
+                          list = []; 
 
                           var json_array = JSON.stringify(data);
 
                           var jsonData = JSON.parse(json_array);
                           for (var i = 0; i < jsonData.centres.length; i++) {
+
                               list = [];
                               var counter = jsonData.centres[i];
-                              list.push(counter.name);
-                              list.push(counter.localisation_x);
-                              list.push(counter.localisation_y);
-                              list.push(counter.name_type);
-                              list.push(counter.color_type);
-                              list.push("title");
-                              locations.push(list);
 
-                              //console.log(counter.name);
+                              if(id_type=="All"){
+
+
+                                    list.push(counter.name);
+                                    list.push(counter.localisation_x);
+                                    list.push(counter.localisation_y);
+                                    list.push(counter.name_type);
+                                    list.push(counter.color_type);
+                                    list.push(counter.id_type);
+                                    list.push("title");
+                                    locations.push(list);
+
+                                    //console.log(counter.name);
+                              }
+
+                              else if(id_type==counter.id_type){   
+
+                                    list = [];
+                                    var counter = jsonData.centres[i];
+                                    list.push(counter.name);
+                                    list.push(counter.localisation_x);
+                                    list.push(counter.localisation_y);
+                                    list.push(counter.name_type);
+                                    list.push(counter.color_type);
+                                    list.push(counter.id_type);
+                                    list.push("title");
+                                    locations.push(list);
+
+                              }
+
                           }
                           locations.push(list);
                           // console.log(locations);
@@ -202,21 +227,31 @@ function Legend(controlDiv, map, types) {
 
     for (i = 0; i < locations.length; i++) {  
 
-      try {color = locations[i][4].substr(1);}catch(err) {color='000000';}
-      if (color) {} else{color='000000';}
-
-      //alert(isHexaColor(locations[i][4].substr(1)));
-      if((isHexaColor(locations[i][4].substr(1)))==false){
-        // alert('false'+locations[i][4]);
-        color='000000';
-      }
+        if(id_type=="All"){
+                                try {color = locations[i][4].substr(1);}catch(err) {color='000000';}
+                                if (color) {} else{color='000000';}
+                                //alert(isHexaColor(locations[i][4].substr(1)));
+                                if((isHexaColor(locations[i][4].substr(1)))==false){
+                                  // alert('false'+locations[i][4]);
+                                  color='000000';
+                                }
+        }
+        else if(id_type==locations[i][5]){  
+                                try {color = locations[i][4].substr(1);}catch(err) {color='000000';}
+                                if (color) {} else{color='000000';}
+                                //alert(isHexaColor(locations[i][4].substr(1)));
+                                if((isHexaColor(locations[i][4].substr(1)))==false){
+                                  // alert('false'+locations[i][4]);
+                                  color='000000';
+                                }
+        }
 
       if (color=="" || color=="undefined" || typeof color === 'undefined' || color.length<6 || color.length>6) {color='000000';} // todo better
 
       marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map,
-        icon: 'http://www.googlemapsmarkers.com/v1/'+color
+          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+          map: map,
+          icon: 'http://www.googlemapsmarkers.com/v1/'+color
       });
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
