@@ -209,6 +209,7 @@
     <span class="custom-dropdown custom-dropdown--white">
         <select class="custom-dropdown__select custom-dropdown__select--white" onchange="searchType(this.options[this.selectedIndex].value);">
             <option value="All">Show All</option>
+            <option disabled>-----------</option>
             <?php 
                
                 if(!empty($types)) {
