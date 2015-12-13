@@ -2,6 +2,14 @@
 
     require_once("../__Globals.php");
     require_once("__dbcontroller.php");
+
+    // to do merge with __css_js_crud.php
+    $db_handle = new DBController();
+    $types = $db_handle->runQuery($GET_ALL_TB_TYPES);
+    $n_types  = count($types);
+    $products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
+    // to do merge with __css_js_crud.php
+
     $db_handle = new DBController();
     $this_filename = explode(".",__FILE__)[0];
     $this_container = "container_".explode("_",$this_filename)[1].".php";

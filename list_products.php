@@ -69,7 +69,7 @@ div:empty:before {
 
 						$id = $products[$k]["id"];
 
-						$centre_nom = utf8_decode($products[$k]["name"]);
+						$product_nom = utf8_decode($products[$k]["name"]);
 						$localisation_x = utf8_decode($products[$k]["localisation_x"]);
 						$localisation_y = utf8_decode($products[$k]["localisation_y"]);
 						$centre_ville = utf8_decode($products[$k]["ville"]);
@@ -132,7 +132,7 @@ div:empty:before {
 		                                        echo "<i class='fa fa-home fa-5x'></i>";
 		                                    echo "</div>";
 		                                    echo "<div class='col-xs-9 text-right'>";
-		                                        echo "<div class='medium' style='font-size:20px;font-weight:bold;'>".$centre_nom."</div>";
+		                                        echo "<div class='medium' style='font-size:20px;font-weight:bold;'>".$product_nom."</div>";
 													echo "<div>".$localisation_x."</div>";		                                        
 													echo "<div>".$localisation_y."</div>";		                                        	                                        
 													echo "<div>".$pays."</div>";
