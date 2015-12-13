@@ -10,7 +10,7 @@
     $products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
     // to do merge with __css_js_crud.php
 
-    
+
     $this_filename = explode(".",__FILE__)[0];
     $this_container = "container_".explode("_",$this_filename)[1].".php";
 		
@@ -300,7 +300,11 @@
 
 							echo "</td>";
 
-							echo "<td><button style='outline: 0;border:0;background:none;color:red;font-weight:bold;'id='deleteR' name='deleteR' onclick=\"deleteR('".$elements_id."','".$sql_table."');\">X</button></td>";
+							echo "<td>";
+							if($n_types>1){ // security to have a list one type in db
+								echo "<button style='outline: 0;border:0;background:none;color:red;font-weight:bold;'id='deleteR' name='deleteR' onclick=\"deleteR('".$elements_id."','".$sql_table."');\">X</button>";
+							}
+							echo "</td>";
 		
 
 						echo "</tr>";
