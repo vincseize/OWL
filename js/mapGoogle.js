@@ -13,62 +13,6 @@ var url_getTypes = "inc_mobile/CRUD_centres/get_all_types.php?action_key="+actio
 
 //////////////////////////////////////////////////////////////////////////////////// get global var
 
-function get_Globals_old() {
-
-  var url = "map_globals.php"; 
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            // var response = xmlhttp.responseText;
-            var response = JSON.parse(xmlhttp.responseText);
-            // console.log(response);
-            $.each(response,function(object){
-              $.each(response[object],function(values){
-                
-                var LRDS_GOOGLEMAP_API_KEY = response[object][values].LRDS_GOOGLEMAP_API_KEY;
-                var tableid = response[object][values].tableid;
-                var center_x = response[object][values].center_x;
-                var center_y = response[object][values].center_y;
-                var zoom = response[object][values].zoom;
-                var map_legend_title = response[object][values].map_legend_title;
-                var map_legend_nota_bene = response[object][values].map_legend_nota_bene;
-                var action_key = response[object][values].CRUD_ACTION_KEY;
-                var url_getTypes = response[object][values].GET_ALL_TB_TYPES_URL;
-
-/*                console.log(LRDS_GOOGLEMAP_API_KEY);
-                console.log(tableid);
-                console.log(center_x);
-                console.log(center_y);
-                console.log(zoom);
-                console.log(map_legend_title);           
-                console.log(map_legend_nota_bene);
-                console.log(url_getTypes);*/
-
-              });
-
-            })
-        }
-  };
-  xmlhttp.open("GET", url, true);
-  xmlhttp.send()
-
-}
-
-  // var tableid = 260197; // ???
-  // var center = new google.maps.LatLng(48.824244, 2.335694);
-  // var center_x = 48.855011; // todo from global php
-  // var center_y = 2.346724; // todo from global php
-  // var zoom = 12; // todo from global php
-  // var map_legend_title = "Types"; // todo from global php
-  // var map_legend_nota_bene = ""; // todo from global php
-  // var map_legend_nota_bene = "* note";
-  // var action_key="83abec5a494b89095d07e031445de903"; // for 'secure' POST // todo from global php
-
-  // var url_getTypes = "inc_mobile/CRUD_centres/get_all_types.php?action_key="+action_key;
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////// end get global var
-
-
 
 function Legend(controlDiv, map, types) {
 

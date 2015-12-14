@@ -8,9 +8,9 @@
     include('register.php'); 
 
     $id_type='All';
-    if(isset($_GET["id_type"])){
+/*    if(isset($_GET["id_type"])){
         $id_type=$_GET["id_type"];
-    }
+    }*/
 
 ?>
 <!DOCTYPE html>
@@ -114,8 +114,13 @@
 
     <script>
         function searchType(id_type){
-            if(id_type!='All'){location.href = "index.php?id_type="+id_type;}   
-            if(id_type=='All'){location.href = "index.php"}   
+            initialize(id_type);
+
+            // if(id_type!='All'){initialize(id_type);}  
+            // if(id_type=='All'){initialize('All');} 
+
+            // if(id_type!='All'){location.href = "index.php?id_type="+id_type;}  
+            // if(id_type=='All'){location.href = "index.php"}   
         }
     </script>
 
@@ -124,15 +129,11 @@
 
 <body onload="initialize('<?php echo $id_type; ?>');">
 
-
-
-
     <!-- #logo -->
     <div id="logo" class="logo"></div>
     <!-- /#logo -->
 
     <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" style="height:100px;" role="navigation">
 
@@ -140,56 +141,30 @@
             <?php include('header_navbar.php'); ?>
             <!-- /#navbar-header -->
 
-
-
-
         </nav>
-
-
-
     </div>
     <!-- /#wrapper -->
-
-
 
 
     <!-- #home_container -->
     <div id="home_container" name="home_container" class="home_container">
 
-
-
-
-<!-- #loader -->
-<div  id="loader" style="position:fixed;z-index:9999;background-color='red';left: 0px;top: 0px;width: 100%;height: 100%;background: url('images/loading-animate.gif') 50% 50% no-repeat;display:none;">
-</div>
-<!-- #loader -->
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <!-- #loader -->
+            <div  id="loader" style="position:fixed;z-index:9999;background-color='red';left: 0px;top: 0px;width: 100%;height: 100%;background: url('images/loading-animate.gif') 50% 50% no-repeat;display:none;">
+            </div>
+            <!-- #loader -->
     
-        <!-- #googleMap -->
-        <script>
-        w_canvas_map = getDocWidth();
-        h_canvas_map = getDocHeight();
-        // alert(h_canvas_map);
-        document.write('  <div id="map_canvas" style="width:'+w_canvas_map+'px;height:'+h_canvas_map+'px;padding-top: 180px;margin: 0px;padding: 0px;"></div>');
+            <!-- #googleMap -->
+            <script>
+            w_canvas_map = getDocWidth();
+            h_canvas_map = getDocHeight();
+            // alert(h_canvas_map);
+            document.write('  <div id="map_canvas" style="width:'+w_canvas_map+'px;height:'+h_canvas_map+'px;padding-top: 180px;margin: 0px;padding: 0px;"></div>');
+            </script>
+            <!-- /#googleMap -->
 
-        </script>
-        <!-- /#googleMap -->
     </div>
     <!-- /#home_container -->
-
-
 
 
     <!-- #login -->
