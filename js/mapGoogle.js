@@ -21,7 +21,7 @@ function Legend(controlDiv, map, types) {
     var arrayLength = types.length;
     for (var i = 0; i < arrayLength; i++) {
         var name = types[i][0];
-        if(name.length>20){var name = name.substr(0,20)+' ...'; }; //  substring for too long Type Name
+        if(name.length>22){var name = name.substr(0,22)+' ...'; }; //  substring for too long Type Name
         var color = types[i][1].substr(1);
         legend = legend + '<img src="http://www.googlemapsmarkers.com/v1/'+color+'" />&nbsp;'+name+'<br />';
     }
@@ -57,6 +57,54 @@ function Legend(controlDiv, map, types) {
   }
 
 
+  function initialize_types(id_type) {
+
+          var id_type = id_type;
+          var color='000000';
+
+          //////////////////////////////////////////////////////////////////////////// GET GLOBALS 
+          get_Globals();
+/*          console.log('-------------------------');
+          console.log(LRDS_GOOGLEMAP_API_KEY);
+          console.log('-------------------------');*/
+
+
+          //////////////////////////////////////////////////////////////////////////// GET MARKERS TYPE
+
+          // setInterval(function(){ alert("Hello"); }, 3000);
+
+
+          types = [];
+          // var url_getTypes = "inc_mobile/CRUD_centres/get_all_types.php?action_key="+action_key; // todo action key from global php
+          // alert(url_getTypes);
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function() {
+              if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var response = JSON.parse(xmlhttp.responseText);
+                $.each(response,function(object){
+                    $.each(response[object],function(values){
+                      var tmp = []
+                      tmp.push(response[object][values].name);
+                      tmp.push(response[object][values].color);
+                      types.push(tmp);
+                    });
+                  })
+
+              initialize(id_type);
+
+              }
+          };
+          xmlhttp.open("GET", url_getTypes, true);
+          xmlhttp.send();
+
+}
+
+
+
+
+
+
+
 
   function initialize(id_type) {
 
@@ -71,7 +119,11 @@ function Legend(controlDiv, map, types) {
 
 
           //////////////////////////////////////////////////////////////////////////// GET MARKERS TYPE
-          types = [];
+
+          // setInterval(function(){ alert("Hello"); }, 3000);
+
+
+/*          types = [];
           // var url_getTypes = "inc_mobile/CRUD_centres/get_all_types.php?action_key="+action_key; // todo action key from global php
           // alert(url_getTypes);
           var xmlhttp = new XMLHttpRequest();
@@ -89,7 +141,9 @@ function Legend(controlDiv, map, types) {
               }
           };
           xmlhttp.open("GET", url_getTypes, true);
-          xmlhttp.send()
+          xmlhttp.send();*/
+
+
 
 
           //////////////////////////////////////////////////////////////////////////// GET MARKERS INFOS

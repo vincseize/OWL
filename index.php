@@ -114,7 +114,7 @@
 
     <script>
         function searchType(id_type){
-            initialize(id_type);
+            initialize_types(id_type);
 
             // if(id_type!='All'){initialize(id_type);}  
             // if(id_type=='All'){initialize('All');} 
@@ -122,12 +122,17 @@
             // if(id_type!='All'){location.href = "index.php?id_type="+id_type;}  
             // if(id_type=='All'){location.href = "index.php"}   
         }
+
+/*        $( document ).ready(function() {
+            initialize(id_type);
+        });*/
+
     </script>
 
 
 </head>
 
-<body onload="initialize('<?php echo $id_type; ?>');">
+<body onload="initialize_types('<?php echo $id_type; ?>');">
 
     <!-- #logo -->
     <div id="logo" class="logo"></div>
@@ -212,8 +217,9 @@
     <script src="js/bootstrap.min.js"></script>
 
 
-
-
+    <script>
+            // initialize(id_type);
+    </script>
 
 
 </body>
