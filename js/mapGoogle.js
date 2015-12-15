@@ -60,20 +60,9 @@ function Legend(controlDiv, map, types) {
   function initialize_types(id_type) {
 
           var id_type = id_type;
-          var color='000000';
 
-          //////////////////////////////////////////////////////////////////////////// GET GLOBALS 
-          get_Globals();
-/*          console.log('-------------------------');
-          console.log(LRDS_GOOGLEMAP_API_KEY);
-          console.log('-------------------------');*/
-
-
-          //////////////////////////////////////////////////////////////////////////// GET MARKERS TYPE
-
-          // setInterval(function(){ alert("Hello"); }, 3000);
-
-
+          $( "#filters" ).show();
+          
           types = [];
           // var url_getTypes = "inc_mobile/CRUD_centres/get_all_types.php?action_key="+action_key; // todo action key from global php
           // alert(url_getTypes);

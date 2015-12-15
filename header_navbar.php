@@ -32,16 +32,16 @@
     <ul class="nav navbar-right top-nav">
 
         <li>
-        <a href="index.php"><i class="fa fa-fw fa-bullseye"></i>Map</a>
+        <a href="index.php" onClick="show('logo');show('filters');"><i class="fa fa-fw fa-bullseye"></i>Map</a>
         </li>
         <li>
-        <a href="#" onClick="load_div('home_container','list_products.php');hide('logo');"><i class="fa fa-fw fa-coffee"></i> Liste <?php echo ucfirst($nom_products) ;?></a>
+        <a href="#" onClick="load_div('home_container','list_products.php');hide('logo');hide('filters');"><i class="fa fa-fw fa-coffee"></i> Liste <?php echo ucfirst($nom_products) ;?></a>
         </li>
         <li>
         <a href="#" onClick="load_div('home_container','list_types.php');hide('logo');"><i class="fa fa-fw fa-filter"></i> Liste <?php echo ucfirst($nom_types) ;?></a>
         </li>
         <li>
-        <a href="#" onClick="toggle_type('login');hide('logo');"><i class="fa fa-fw fa-gear"></i> Admin</a>
+        <a href="#" onClick="toggle_type('login');hide('logo');hide('filters');"><i class="fa fa-fw fa-gear"></i> Admin</a>
         </li>
 
         
