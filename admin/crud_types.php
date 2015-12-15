@@ -3,25 +3,18 @@
     require_once("../__Globals.php");
     require_once("__dbcontroller.php");
 
-    // to do merge with __css_js_crud.php
-    $db_handle = new DBController();
-    $types = $db_handle->runQuery($GET_ALL_TB_TYPES);
-	$n_types  = count($types);
-    $products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
-    // to do merge with __css_js_crud.php
-
-
     $this_filename = explode(".",__FILE__)[0];
     $this_container = "container_".explode("_",$this_filename)[1].".php";
 		
 	include('__css_js_crud.php'); // don't touch emplacement
 
     // CONFIG
-    $elements = $types;
-    $sql_table = $TB_TYPES;
 	// todo same array as js colorpicker
 	$colors_types = array('000000','993300','333300','000080','333399','333333','800000','FF6600','808000','008000','008080','0000FF','666699','808080','FF0000','FF9900','99CC00','339966','33CCCC','3366FF','800080','999999','FF00FF','FFCC00','FFFF00','00FF00','00FFFF','00CCFF','993366','C0C0C0','FF99CC','FFCC99','FFFF99','CCFFFF','99CCFF','FFFFFF');
-    $arrayNameCols = array('name','description','color');
+    //////////////////////////////////////////////// Column name ///////////////////////////////////////////
+    // CONFIG your own columns you want to show | default are same as db columns // todo, link with loop otable construct
+    // important excatly same name as db    
+    // $arrayNameCols = array('name','description','color');
 
 ?>
 

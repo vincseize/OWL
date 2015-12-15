@@ -64,7 +64,12 @@
 <!-- php general var -->
 <?php
 
-	// echo explode("_",$this_filename)[1];
+    // to do merge with __css_js_crud.php
+    $db_handle = new DBController();
+    $types = $db_handle->runQuery($GET_ALL_TB_TYPES);
+	$n_types  = count($types);
+    $products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
+    // to do merge with __css_js_crud.php
 
 	if(explode("_",$this_filename)[1]=="products"){$GET_ALL_TB_ELEMENTS = $GET_ALL_TB_PRODUCTS;$sql_table = $TB_PRODUCTS;}
 	    if(explode("_",$this_filename)[1]=="types"){$GET_ALL_TB_ELEMENTS = $GET_ALL_TB_TYPES;$sql_table = $TB_TYPES;}

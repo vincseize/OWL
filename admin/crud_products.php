@@ -3,24 +3,15 @@
     require_once("../__Globals.php");
     require_once("__dbcontroller.php");
 
-    // to do merge with __css_js_crud.php
-    $db_handle = new DBController();
-    $types = $db_handle->runQuery($GET_ALL_TB_TYPES);
-    $n_types  = count($types);
-    $products = $db_handle->runQuery($GET_ALL_TB_PRODUCTS);
-    // to do merge with __css_js_crud.php
-
-    $db_handle = new DBController();
     $this_filename = explode(".",__FILE__)[0];
     $this_container = "container_".explode("_",$this_filename)[1].".php";
-    $ch = explode("_",$this_filename)[1];
 
     include('__css_js_crud.php'); // don't touch emplacement line 
 
     //////////////////////////////////////////////// Column name ///////////////////////////////////////////
     // CONFIG your own columns you want to show | default are same as db columns // todo, link with loop otable construct
     // important excatly same name as db
-    $arrayNameCols = array('name','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','public','horaires','type');  
+    // $arrayNameCols = array('name','localisation_x','localisation_y','ville','code_postal','adresse','pays','comments','phone','public','horaires','type');  
 
     //////////////////////////////////////////////// end Colum name ///////////////////////////////////////////
 
@@ -110,7 +101,7 @@
 
   	// var id = -1;	//for simulation 
   	var tb = "<?php echo $sql_table; ?>";
-  	var ch = "<?php echo $ch; ?>";
+
 
 
   	var oTable = $('#example').dataTable( {
