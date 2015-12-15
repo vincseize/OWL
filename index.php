@@ -8,9 +8,6 @@
     include('register.php'); 
 
     $id_type='All';
-/*    if(isset($_GET["id_type"])){
-        $id_type=$_GET["id_type"];
-    }*/
 
 ?>
 <!DOCTYPE html>
@@ -52,59 +49,62 @@
     <![endif]-->
 
 
-<style type="text/css">
-    html, body {
-        height: 100%;
-        height: 100%;
-        margin: 0px;
-        padding: 0px;
-        display: block;
-        background-color: #fff;
-    }
+<script language="javascript" type="text/javascript" src="js/owl.js"/></script>
+<link rel="stylesheet" href="css/owl.css" type="text/css" />
 
-    .login {
-        position:absolute;
-        z-index: 9999;
-        width:250px;
-        border-radius: 0px 0px 0px 20px;
-        text-align:center;
-        top:90px;  
-        right:0px;      
-        background-color: #222;
-        display: none;
-        padding: 0px;
-    }
 
-    .filters {
-        position:absolute;
-        z-index: 9999;
 
-        text-align:center;
-        top:40px;  
-        right:12px;      
-        background-color: #222;
-        display: block;
-        padding: 0px;
-    }
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            display: block;
+            background-color: #fff;
+        }
 
-    .logo {
-        position: absolute;
-        z-index: 10000;
-        margin-left: 0px;
-        float: left;
-        width: 200px;
-        height: 75px;
-        bottom:10px;
-        background: url(img/logo.png) no-repeat center;
-        background-position: 0px 0px; 
-        display: block;
-    }
-</style>
+        .login {
+            position:absolute;
+            z-index: 9999;
+            width:250px;
+            border-radius: 0px 0px 0px 20px;
+            text-align:center;
+            top:90px;  
+            right:0px;      
+            background-color: #222;
+            display: none;
+            padding: 0px;
+        }
 
+        .filters {
+            position:absolute;
+            z-index: 9999;
+
+            text-align:center;
+            top:40px;  
+            right:12px;      
+            background-color: #222;
+            display: block;
+            padding: 0px;
+        }
+
+        .logo {
+            position: absolute;
+            z-index: 10000;
+            margin-left: 0px;
+            float: left;
+            width: 200px;
+            height: 75px;
+            bottom:10px;
+            background: url(img/logo.png) no-repeat center;
+            background-position: 0px 0px; 
+            display: block;
+        }
+    </style>
 
 
     <script src="js/owl.js" type="text/javascript"></script>
-
 
     <scriptSampleDes src="http://maps.google.com/maps/api/js?key=LRDS_GOOGLEMAP_API_KEY" type="text/javascript"></script>
 
@@ -112,27 +112,24 @@
 
     <script src="js/mapGoogle.js" type="text/javascript"></script>
 
+
+
+
+
+
     <script>
         function searchType(id_type){
             initialize_types(id_type);
-
-            // if(id_type!='All'){initialize(id_type);}  
-            // if(id_type=='All'){initialize('All');} 
-
-            // if(id_type!='All'){location.href = "index.php?id_type="+id_type;}  
-            // if(id_type=='All'){location.href = "index.php"}   
         }
-
-/*        $( document ).ready(function() {
-            initialize(id_type);
-        });*/
-
     </script>
 
 
 </head>
 
 <body onload="initialize_types('<?php echo $id_type; ?>');">
+
+
+
 
     <!-- #logo -->
     <div id="logo" class="logo"></div>
@@ -154,19 +151,22 @@
     <!-- #home_container -->
     <div id="home_container" name="home_container" class="home_container">
 
-            <!-- #loader -->
-            <div  id="loader" style="position:fixed;z-index:9999;background-color='red';left: 0px;top: 0px;width: 100%;height: 100%;background: url('images/loading-animate.gif') 50% 50% no-repeat;display:none;">
-            </div>
-            <!-- #loader -->
-    
-            <!-- #googleMap -->
-            <script>
-            w_canvas_map = getDocWidth();
-            h_canvas_map = getDocHeight();
-            // alert(h_canvas_map);
-            document.write('  <div id="map_canvas" style="width:'+w_canvas_map+'px;height:'+h_canvas_map+'px;padding-top: 180px;margin: 0px;padding: 0px;"></div>');
-            </script>
-            <!-- /#googleMap -->
+        <!-- #loader
+        <div  id="loader" style="position:fixed;z-index:9999;background-color='red';left: 0px;top: 0px;width: 100%;height: 100%;background: url('images/loading-animate.gif') 50% 50% no-repeat;display:none;">
+        </div>
+
+         -->
+        <!-- #loader -->
+
+
+        <!-- #googleMap -->
+        <script>
+        w_canvas_map = getDocWidth();
+        h_canvas_map = getDocHeight();
+        // alert(h_canvas_map);
+        document.write('  <div id="map_canvas" style="width:'+w_canvas_map+'px;height:'+h_canvas_map+'px;padding-top: 180px;margin: 0px;padding: 0px;"></div>');
+        </script>
+        <!-- /#googleMap -->
 
     </div>
     <!-- /#home_container -->

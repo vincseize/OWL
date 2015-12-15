@@ -27,8 +27,22 @@ div:empty:before {
 
 </style>
 
+<script type="text/javascript" charset="utf-8">
+	$(document).ready( function () {
 
 
+  	$body = $("body");
+
+  	// loader
+      $body.addClass("loading");
+
+  // end loading
+  $body.removeClass("loading");
+
+} );
+
+
+</script>
 
 
 
