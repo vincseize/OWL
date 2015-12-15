@@ -62,10 +62,8 @@ function Legend(controlDiv, map, types) {
           var id_type = id_type;
 
           $( "#filters" ).show();
-          
+
           types = [];
-          // var url_getTypes = "inc_mobile/CRUD_centres/get_all_types.php?action_key="+action_key; // todo action key from global php
-          // alert(url_getTypes);
           var xmlhttp = new XMLHttpRequest();
           xmlhttp.onreadystatechange = function() {
               if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -86,13 +84,7 @@ function Legend(controlDiv, map, types) {
           xmlhttp.open("GET", url_getTypes, true);
           xmlhttp.send();
 
-}
-
-
-
-
-
-
+  }
 
 
   function initialize(id_type) {
@@ -102,39 +94,6 @@ function Legend(controlDiv, map, types) {
 
           //////////////////////////////////////////////////////////////////////////// GET GLOBALS 
           get_Globals();
-/*          console.log('-------------------------');
-          console.log(LRDS_GOOGLEMAP_API_KEY);
-          console.log('-------------------------');*/
-
-
-          //////////////////////////////////////////////////////////////////////////// GET MARKERS TYPE
-
-          // setInterval(function(){ alert("Hello"); }, 3000);
-
-
-/*          types = [];
-          // var url_getTypes = "inc_mobile/CRUD_centres/get_all_types.php?action_key="+action_key; // todo action key from global php
-          // alert(url_getTypes);
-          var xmlhttp = new XMLHttpRequest();
-          xmlhttp.onreadystatechange = function() {
-              if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                var response = JSON.parse(xmlhttp.responseText);
-                $.each(response,function(object){
-                    $.each(response[object],function(values){
-                      var tmp = []
-                      tmp.push(response[object][values].name);
-                      tmp.push(response[object][values].color);
-                      types.push(tmp);
-                    });
-                  })
-              }
-          };
-          xmlhttp.open("GET", url_getTypes, true);
-          xmlhttp.send();*/
-
-
-
-
           //////////////////////////////////////////////////////////////////////////// GET MARKERS INFOS
 
           var json = (function () { 
@@ -161,7 +120,6 @@ function Legend(controlDiv, map, types) {
 
                               if(id_type=="All"){
 
-
                                     list.push(counter.name);
                                     list.push(counter.localisation_x);
                                     list.push(counter.localisation_y);
@@ -170,8 +128,6 @@ function Legend(controlDiv, map, types) {
                                     list.push(counter.id_type);
                                     list.push("title");
                                     locations.push(list);
-
-                                    //console.log(counter.name);
                               }
 
                               else if(id_type==counter.id_type){   
@@ -186,26 +142,18 @@ function Legend(controlDiv, map, types) {
                                     list.push(counter.id_type);
                                     list.push("title");
                                     locations.push(list);
-
                               }
 
                           }
                           locations.push(list);
-                          // console.log(locations);
-
-
 
   ////////////////////////////////////////////////////////////////////////// CREATE MAP
-
-
 
     var map = new google.maps.Map(document.getElementById('map_canvas'), {
       zoom: zoom,
       center: new google.maps.LatLng(center_x, center_y),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-
-
 
 
     var infowindow = new google.maps.InfoWindow();
@@ -258,20 +206,30 @@ function Legend(controlDiv, map, types) {
 
 
 
-                      }else{
-                        alert("FALSE");
-                        console.log("FALSE");
-                      }        
-                     } 
-              });
 
-              // return data;
-              
-          })();
+    // end if data;
+    }else{
+          // alert("FALSE");
+          console.log("FALSE");
+          }   
 
 
 
 
+    // end ajax
+    }
 
 
+  // end json
+  });
+
+
+
+  // end function     
+  })();
+
+
+
+
+// end fct  initialize 
 }
